@@ -10,9 +10,14 @@ module.exports = {
         path: __dirname + "/public/dist",
         filename: "js/[name]-[chunkhash].js"
     },
-    // resolve: {
-    //     extensions: ['.js', '.vue']
-    // },
+    devServer: {
+        contentBase: "/public/dist",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true//实时刷新
+    },
+    resolve: {
+        extensions: ['.js', '.vue']
+    },
     plugins: [
         new htmlWebpackPlugin({
             filename: "index.html",
@@ -31,8 +36,11 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                // loader: 'babel?presets=es2015',
+                loader: "babel-loader",
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/, loader: 'style-loader!css-loader'
             }
         ]
     }
