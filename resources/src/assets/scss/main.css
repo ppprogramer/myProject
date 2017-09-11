@@ -4,10 +4,6 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-body{
-    background: red;
-}
-
 *, *:before, *:after {
     box-sizing: inherit;
 }

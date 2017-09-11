@@ -16,7 +16,8 @@ module.exports = {
         inline: true//实时刷新
     },
     resolve: {
-        extensions: ['.js', '.vue']
+        extensions: ['.js', '.vue'],
+        alias: { 'vue': 'vue/dist/vue.js' }
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -32,7 +33,7 @@ module.exports = {
             // 使用vue-loader 加载 .vue 结尾的文件
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             },
             {
                 test: /\.js$/,
@@ -41,7 +42,12 @@ module.exports = {
             },
             {
                 test: /\.css$/, loader: 'style-loader!css-loader'
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                exclude: /node_modules/
+            },
         ]
     }
 }
