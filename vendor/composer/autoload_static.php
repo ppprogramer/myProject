@@ -74,6 +74,10 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         array (
             'Illuminate\\' => 11,
         ),
+        'G' => 
+        array (
+            'GatewayClient\\' => 14,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -203,6 +207,10 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'GatewayClient\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/gatewayclient',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
@@ -277,6 +285,7 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -775,6 +784,9 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'GatewayClient\\Context' => __DIR__ . '/..' . '/workerman/gatewayclient/Gateway.php',
+        'GatewayClient\\Gateway' => __DIR__ . '/..' . '/workerman/gatewayclient/Gateway.php',
+        'GatewayClient\\GatewayProtocol' => __DIR__ . '/..' . '/workerman/gatewayclient/Gateway.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',

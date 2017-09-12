@@ -3,6 +3,8 @@ import App from '../components/App'
 import '../assets/scss/main.css';
 
 new Vue({
-    el: "#app",
-
+    el: '#app',
+    components:{
+        App
+    }
 });
