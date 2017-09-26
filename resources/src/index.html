@@ -1,11 +1,13 @@
  <!DOCTYPE html>
  <html>
- <title><%=htmlWebpackPlugin.options.title%></title>
-     <head>
-         <meta charset="utf-8">
-     </head>
- <script src="<%=htmlWebpackPlugin.files.chunks.app.entry %>"></script>
-     <body>
+ <head>
+     <title><%=htmlWebpackPlugin.options.title%></title>
+     <meta charset="utf-8">
+ </head>
+ <body>
+    <div id="app">
 
-     </body>
+    </div>
+ </body>
+ <script src="<%=htmlWebpackPlugin.files.chunks.app.entry %>"></script>
  </html>
