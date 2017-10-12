@@ -3,7 +3,7 @@ use Workerman\Worker;
 require_once __DIR__ . './Autoloader.php';
 
 // 创建一个Worker监听2345端口，使用http协议通讯
-$http_worker = new Worker("http://127.0.0.1:2345");
+$http_worker = new Worker("websocket://127.0.0.1:2345");
 
 // 启动4个进程对外提供服务
 $http_worker->count = 4;
