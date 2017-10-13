@@ -16,7 +16,7 @@
 
                         You are logged in!
                     </div>
-                    <div id="output">asdfad</div>
+                    <div id="output"></div>
                 </div>
             </div>
         </div>
@@ -28,7 +28,6 @@
         var output = document.getElementById("output");
         var wsUri = "ws://127.0.0.1:2345";
         var userId = "<?php echo \Illuminate\Support\Facades\Auth::user()->id?>";
-        alert(userId);
         function testWebSocket() {
             websocket = new WebSocket(wsUri);
             websocket.onopen = function (evt) {
@@ -51,6 +50,7 @@
         }
 
         function onClose(evt) {
+            alert('close');
             writeToScreen("closed");
         }
 
@@ -65,7 +65,7 @@
 
         function doSend(message) {
             writeToScreen("SENT: " + message);
-            websocket.send(message);
+            websocket.send(userId);
         }
 
         function writeToScreen(message) {

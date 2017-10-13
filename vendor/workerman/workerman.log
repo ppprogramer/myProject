@@ -1,0 +1,39 @@
+2017-10-13 11:05:20 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Protocols\Websocket.php:225
+Stack trace:
+#0 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(310): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(19): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '1')
+#3 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(629): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '1')
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #16)
+#5 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Events\Select.php(286): call_user_func_array(Array, Array)
+#6 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(857): Workerman\Events\Select->loop()
+#7 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(473): Workerman\Worker->run()
+#8 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(382): Workerman\Worker::runAllWorkers()
+#9 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(22): Workerman\Worker::runAll()
+#10 {main}
+2017-10-13 15:11:54 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Protocols\Websocket.php:225
+Stack trace:
+#0 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(310): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(19): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '1')
+#3 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(629): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '1')
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #16)
+#5 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Events\Select.php(286): call_user_func_array(Array, Array)
+#6 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(857): Workerman\Events\Select->loop()
+#7 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(473): Workerman\Worker->run()
+#8 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(382): Workerman\Worker::runAllWorkers()
+#9 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(22): Workerman\Worker::runAll()
+#10 {main}
+2017-10-13 15:16:58 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Protocols\Websocket.php:225
+Stack trace:
+#0 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(310): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(19): Workerman\Connection\TcpConnection->send(Array)
+#2 [internal function]: {closure}(Object(Workerman\Connection\TcpConnection), '1')
+#3 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Connection\TcpConnection.php(629): call_user_func(Object(Closure), Object(Workerman\Connection\TcpConnection), '1')
+#4 [internal function]: Workerman\Connection\TcpConnection->baseRead(Resource id #16)
+#5 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Events\Select.php(286): call_user_func_array(Array, Array)
+#6 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(857): Workerman\Events\Select->loop()
+#7 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(473): Workerman\Worker->run()
+#8 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\Worker.php(382): Workerman\Worker::runAllWorkers()
+#9 D:\phpStudy\WWW\myProject\vendor\workerman\workerman-for-win\test.php(22): Workerman\Worker::runAll()
+#10 {main}

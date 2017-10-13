@@ -38,18 +38,13 @@ class test_cw extends Command
      */
     public function handle()
     {
-        $http_worker = new Worker("http://0.0.0.0:2345");
-
-        // 启动4个进程对外提供服务
-        $http_worker->count = 4;
-
-        // 接收到浏览器发送的数据时回复hello world给浏览器
-        $http_worker->onMessage = function($connection, $data)
-        {
-            // 向浏览器发送hello world
-            $connection->send('hello world');
-        };
-
-        Worker::runAll();
+        // 建立socket连接到内部推送端口
+        $client = stream_socket_client('tcp://127.0.0.1:5678', $errno, $errmsg, 1);
+        // 推送的数据，包含uid字段，表示是给这个uid推送
+        $data = array('uid'=>1, 'percent'=>'88%');
+        // 发送数据，注意5678端口是Text协议的端口，Text协议需要在数据末尾加上换行符
+        fwrite($client, json_encode($data)."\n");
+        // 读取推送结果
+        echo fread($client, 8192);
     }
 }
