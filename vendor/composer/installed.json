@@ -3761,5 +3761,135 @@
             "testing",
             "xunit"
         ]
+    },
+    {
+        "name": "symfony/dom-crawler",
+        "version": "v3.3.10",
+        "version_normalized": "3.3.10.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/dom-crawler.git",
+            "reference": "40dafd42d5dad7fe5ad4e958413d92a207522ac1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/symfony/dom-crawler/40dafd42d5dad7fe5ad4e958413d92a207522ac1.zip",
+            "reference": "40dafd42d5dad7fe5ad4e958413d92a207522ac1",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.5.9|>=7.0.8",
+            "symfony/polyfill-mbstring": "~1.0"
+        },
+        "require-dev": {
+            "symfony/css-selector": "~2.8|~3.0"
+        },
+        "suggest": {
+            "symfony/css-selector": ""
+        },
+        "time": "2017-10-02T06:42:24+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\DomCrawler\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony DomCrawler Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "encore/laravel-admin",
+        "version": "v1.5.5",
+        "version_normalized": "1.5.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/z-song/laravel-admin.git",
+            "reference": "66c2347e99663b1b98f928cb13a0fa1188e4d7bd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/z-song/laravel-admin/66c2347e99663b1b98f928cb13a0fa1188e4d7bd.zip",
+            "reference": "66c2347e99663b1b98f928cb13a0fa1188e4d7bd",
+            "shasum": ""
+        },
+        "require": {
+            "laravel/framework": "~5.5",
+            "php": ">=7.0.0",
+            "symfony/dom-crawler": "~3.1"
+        },
+        "require-dev": {
+            "fzaninotto/faker": "~1.4",
+            "intervention/image": "~2.3",
+            "laravel/browser-kit-testing": "^2.0",
+            "laravel/laravel": "~5.5",
+            "phpunit/phpunit": "~6.0",
+            "symfony/css-selector": "~3.1"
+        },
+        "suggest": {
+            "intervention/image": "Required to handling and manipulation upload images (~2.3).",
+            "spatie/eloquent-sortable": "Required to built orderable gird."
+        },
+        "time": "2017-09-22T07:39:55+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Encore\\Admin\\AdminServiceProvider"
+                ],
+                "aliases": {
+                    "Admin": "Encore\\Admin\\Facades\\Admin"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Encore\\Admin\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "zsong",
+                "email": "zosong@126.com"
+            }
+        ],
+        "description": "laravel admin",
+        "homepage": "https://github.com/z-song/laravel-admin",
+        "keywords": [
+            "admin",
+            "form",
+            "grid",
+            "laravel"
+        ]
     }
 ]
