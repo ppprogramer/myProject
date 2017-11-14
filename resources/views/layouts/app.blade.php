@@ -2,19 +2,14 @@
 <html>
 <head>
     <title>首页</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('web/plug-in/AmazeUI-2.4.2/assets/css/admin.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('web/plug-in/AmazeUI-2.4.2/assets/css/amazeui.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('web/css/index/hmstyle.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('web/css/basic/demo.css')}}"/>
-    <script src="{{asset('web/js/basic/jquery.min.js')}}"></script>
-    <script src="{{asset('web/plug-in/AmazeUI-2.4.2/assets/js/amazeui.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('web/plug/bootstrap/css/bootstrap.css')}}"/>
+    <script src="{{asset('web/js/vue.js')}}"></script>
+    <script src="{{asset('web/plug/bootstrap/js/bootstrap.js')}}"></script>
 </head>
 <body>
-<div class="hmtop">
-    @yield('header')
-    @yield('content')
-    @yield('footer')
-</div>
+@yield('header')
+@yield('content')
+@yield('footer')
 </body>
 
 <script>
