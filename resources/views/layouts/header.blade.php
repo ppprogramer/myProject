@@ -1,17 +1,29 @@
 <div class="nav_bar">
-    <div class="nav_bar_left">
-        <span>喵，欢迎来喵市</span>
-        <span>请登录</span>
-        <span>免费注册</span>
-    </div>
-    <div class="nav_bar_right">
-        <span>我的宝贝</span>
-        <span>购物车</span>
-        <span>收藏夹</span>
+    <div class="set_nav_bar col-md-8">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">喵，欢迎来喵市</a></li>
+                        <li><a href="#">请登录</a></li>
+                        <li><a href="#">免费注册</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">我的宝贝</a></li>
+                        <li><a href="#">购物车</a></li>
+                        <li><a href="#">收藏夹</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
 </div>
 <div class="header">
-    <div class="logo"></div>
+    <div class="logo">
+        <div class="logo_img">
+            <img src="{{asset('web/img/logo.png')}}" />
+        </div>
+    </div>
     <div class="search">
         <div class="search_input">
             <span><input name="query" type="text" placeholder="内衣/内裤"/></span>
