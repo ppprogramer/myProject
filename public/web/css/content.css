@@ -1,0 +1,148 @@
+#content {
+    width: 100%;
+    height: 1000px;
+    background-color: #00acd6;
+}
+
+#content .top_menu {
+    width: 100%;
+    height: 30px;
+    background-color: #FFD34F;
+}
+
+#content .pc_banner_wrapper {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+}
+
+/*菜单导航  start*/
+#content .pc_banner_wrapper .nav_menu {
+    z-index: 9999;
+    width: 1230px;
+    height: 106px;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list {
+    height: 500px;
+    width: 200px;
+    float: left;
+    background: rgba(0, 0, 0, 0.27);
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list li {
+    height: 31px;
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list li a {
+    font-weight: bold;
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list li:hover a {
+    text-decoration: none;
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list li i {
+    height: 31px;
+    font-size: 16px;
+    margin-left: 14px;
+    margin-right: 6px;
+    line-height: 31px;
+}
+
+#content .pc_banner_wrapper .nav_menu .menu_list li a {
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/*菜单导航  end*/
+
+/*二级菜单  start*/
+#menu_child div {
+    width: 780px;
+    height: 500px;
+    float: left;
+    display: none;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+#menu_child .panel_content dl {
+    display: block;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: hidden;
+}
+
+#menu_child .panel_content dl dt {
+    display: block;
+    float: left;
+    width: 60px;
+    text-align: right;
+    height: 22px;
+    line-height: 22px;
+    padding-right: 6px;
+}
+
+#menu_child .panel_content dl dt a {
+    display: block;
+    color: #e4393c;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 10pt;
+    margin: 12px 0;
+}
+
+#menu_child .panel_content dl dd {
+    display: block;
+    overflow: hidden;
+}
+
+#menu_child .panel_content dl dd a {
+    /* 在此插入CSS样式 */
+    display: block;
+    color: #737373;
+    float: left;
+    border-left: 1px solid #CCC;
+    font-size: 9pt;
+    height: 14px;
+    line-height: 14px;
+    padding: 0 8px;
+    margin: 16px 0;
+}
+
+/*二级菜单  end*/
+
+/* 轮播广告 开始 */
+#content .pc_banner_wrapper .carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+
+#content .pc_banner_wrapper .carousel .item {
+    height: 500px;
+    background-color: #000;
+}
+
+#content .pc_banner_wrapper .carousel .item img {
+    width: 100%;
+}
+
+#content .pc_banner_wrapper .carousel-caption {
+    z-index: 10;
+}
+
+#content .pc_banner_wrapper .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* 轮播广告 结束 */
