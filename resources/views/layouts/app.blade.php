@@ -4,6 +4,7 @@
     <title>首页</title>
     <link rel="stylesheet" type="text/css" href="{{asset('web/plug/bootstrap/css/bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('web/plug/font-awesome/css/font-awesome.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('web/plug/font_481207/iconfont.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('web/css/common.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('web/css/header.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('web/css/content.css')}}"/>

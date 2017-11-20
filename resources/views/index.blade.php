@@ -5,17 +5,39 @@
 
 @section('content')
     <div id="content">
-        <div class="top_menu">top-nav</div>
+        <div class="top_menu">
+            <div class="top_menu_con">
+                <div class="category-type">
+                    <i class="iconfont icon-saoyisao"></i>
+                    <div>商品分类</div>
+                </div>
+                <div class="top_menu_right">
+                    <ul>
+                        <li><img src="{{ asset('web/img/tm_cs.png') }}"></li>
+                        <li><img src="{{ asset('web/img/tm_gj.png') }}"></li>
+                        <li><a href="#">天猫会员</a></li>
+                        <li><a href="#">电器城</a></li>
+                        <li><a href="#">喵鲜生</a></li>
+                        <li><a href="#">医药馆</a></li>
+                        <li><a href="#">营业厅</a></li>
+                        <li><a href="#">魅力惠</a></li>
+                        <li><a href="#">飞猪旅行</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="pc_banner_wrapper">
             {{--导航--}}
             <div class="nav_menu">
                 <div class="menu_list">
                     <ul class="normal-nav">
-                        <li><i class="fa fa-flag"></i><a href="#">女装 /</a><a href="#">内衣</a></li>
-                        <li><i class="fa fa-flag"></i><a href="#">男装 /</a><a href="#">户外运动</a></li>
-                        <li><i class="fa fa-flag"></i><a href="#">女鞋 /</a><a href="#">男鞋 /</a><a href="#">女鞋</a></li>
-                        <li><i class="fa fa-flag"></i><a href="#">美妆 /</a><a href="#">个人护理</a></li>
-                        <li><i class="fa fa-flag"></i><a href="#">女装 /</a><a href="#">内衣</a></li>
+                        <li><i class="iconfont icon-yifu4"></i><a href="#">女装 /</a><a href="#">内衣</a></li>
+                        <li><i class="iconfont icon-yifu6"></i><a href="#">男装 /</a><a href="#">户外运动</a></li>
+                        <li><i class="iconfont icon-wode"></i><a href="#">女鞋 /</a><a href="#">男鞋 /</a><a href="#">女鞋</a>
+                        </li>
+                        <li><i class="iconfont icon-jiaju1"></i><a href="#">美妆 /</a><a href="#">个人护理</a></li>
+                        <li><i class="iconfont icon-shouji5" aria-hidden="true"></i><a href="#">手机 /</a><a
+                                    href="#">电脑</a></li>
                     </ul>
                 </div>
                 <div class="menu_child" id="menu_child">
