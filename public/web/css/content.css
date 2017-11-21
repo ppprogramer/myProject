@@ -1,12 +1,12 @@
 #content {
     width: 100%;
     height: 1000px;
-    background-color: #00acd6;
 }
 
 #content .top_menu {
     width: 100%;
     height: 36px;
+    border-bottom: 2px solid #FF0036;
 }
 
 #content .top_menu .top_menu_con {
@@ -15,11 +15,13 @@
     margin: 0 auto;
     left: 0;
     right: 0;
+    position: absolute;
 }
 
 #content .top_menu .category-type {
     width: 200px;
     height: 36px;
+    float: left;
     background-color: #FF0036;
 }
 
@@ -43,8 +45,30 @@
 
 #content .top_menu .top_menu_con .top_menu_right {
     height: 36px;
-    width: 120px;
-    background-color: red;
+    width: 1030px;
+    float: right;
+}
+
+#content .top_menu .top_menu_con .top_menu_right a {
+    float: left;
+    height: 35px;
+    cursor: pointer;
+    padding: 0 8px;
+    font-weight: 500;
+    font-size: 16px;
+    display: block;
+    color: #333;
+    letter-spacing: normal;
+    line-height: 36px;
+    position: relative;
+}
+
+#content .top_menu .top_menu_con .top_menu_right a img {
+    width: 100px;
+    height: 30px;
+    line-height: 36px;
+    margin-top: 3px;
+    display: block;
 }
 
 #content .pc_banner_wrapper {
@@ -100,16 +124,20 @@
 /*菜单导航  end*/
 
 /*二级菜单  start*/
-#menu_child div {
-    width: 780px;
+#menu_child .panel_content {
+    width: 850px;
     height: 500px;
-    float: left;
     display: none;
     overflow: hidden;
     background-color: #ffffff;
 }
 
-#menu_child .panel_content dl {
+#menu_child .panel_content .panel_content_left {
+    width: 630px;
+    height: 500px;
+}
+
+#menu_child .panel_content .panel_content_left dl {
     display: block;
     border-bottom: 1px dashed #EEE;
     padding-bottom: 3px;
@@ -118,7 +146,7 @@
     overflow: hidden;
 }
 
-#menu_child .panel_content dl dt {
+#menu_child .panel_content .panel_content_left dl dt {
     display: block;
     float: left;
     width: 60px;
@@ -128,7 +156,7 @@
     padding-right: 6px;
 }
 
-#menu_child .panel_content dl dt a {
+#menu_child .panel_content .panel_content_left dl dt a {
     display: block;
     color: #e4393c;
     font-weight: bold;
@@ -137,12 +165,12 @@
     margin: 12px 0;
 }
 
-#menu_child .panel_content dl dd {
+#menu_child .panel_content .panel_content_left dl dd {
     display: block;
     overflow: hidden;
 }
 
-#menu_child .panel_content dl dd a {
+#menu_child .panel_content .panel_content_left dl dd a {
     /* 在此插入CSS样式 */
     display: block;
     color: #737373;
@@ -153,6 +181,20 @@
     line-height: 14px;
     padding: 0 8px;
     margin: 16px 0;
+}
+
+#menu_child .panel_content .panel_content_right {
+    width: 220px;
+    height: 500px;
+    margin-top: -500px;
+    float: right;
+}
+
+#menu_child .panel_content .panel_content_right .ad_con {
+    margin: 10px 10px;
+    width: 200px;
+    height: 480px;
+    background: #cccccc;
 }
 
 /*二级菜单  end*/
@@ -183,3 +225,134 @@
 }
 
 /* 轮播广告 结束 */
+
+/*section_a start*/
+#section_a_title {
+    width: 1230px;
+    height: 31px;
+    right: 0;
+    left: 0;
+    margin: 10px auto;
+}
+
+#section_a_title .section_a_title_left {
+    height: 31px;
+    width: 214px;
+    float: left;
+    line-height: 31px;
+}
+
+#section_a_title .section_a_title_left img {
+    height: 25px;
+    width: 214px;
+}
+
+#section_a_title .section_a_title_right {
+    height: 31px;
+    width: 800px;
+    float: right;
+}
+
+#section_a_title .section_a_title_right a {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #f5f5f5;
+    float: right;
+}
+
+#section_a_con {
+    width: 1230px;
+    height: 618px;
+    margin: 0 auto;
+    background: #F5F5F5;
+}
+
+#section_a_con .section_a_con_1 {
+    width: 235px;
+    height: 618px;
+    float: left;
+}
+
+#section_a_con .section_a_con_1 img {
+    display: block;
+    width: 100%;
+    height: 618px;
+}
+
+#section_a_con .section_a_con_2 {
+    width: 995px;
+    height: 618px;
+    float: right;
+}
+
+#section_a_con .section_a_con_2 .floor-item-content-wrap {
+    float: left;
+    width: 234px;
+    height: 300px;
+    margin-left: 12px;
+    margin-bottom: 17px;
+    border: 1px solid #fff;
+}
+
+/*section_a end*/
+
+#section_b_title {
+    width: 1230px;
+    height: 31px;
+    right: 0;
+    left: 0;
+    margin: 10px auto;
+}
+
+#section_b_title .section_b_title_left {
+    height: 31px;
+    width: 214px;
+    float: left;
+    line-height: 31px;
+}
+
+#section_b_title .section_b_title_left img {
+    height: 25px;
+    width: 214px;
+}
+
+#section_b_title .section_b_title_right {
+    height: 31px;
+    width: 800px;
+    float: right;
+}
+
+#section_b_title .section_b_title_right a {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #f5f5f5;
+    float: right;
+}
+
+/*section_b start*/
+#section_b_con {
+    width: 1230px;
+    height: 618px;
+    margin: 0 auto;
+    background: #F5F5F5;
+}
+
+#section_b_con .floor-item-content-wrap {
+    float: left;
+    width: 234px;
+    height: 300px;
+    margin-right: 12px;
+    margin-bottom: 17px;
+    border: 1px solid #fff;
+}
+
+/*section_b end*/
+

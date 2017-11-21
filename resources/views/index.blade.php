@@ -12,17 +12,15 @@
                     <div>商品分类</div>
                 </div>
                 <div class="top_menu_right">
-                    <ul>
-                        <li><img src="{{ asset('web/img/tm_cs.png') }}"></li>
-                        <li><img src="{{ asset('web/img/tm_gj.png') }}"></li>
-                        <li><a href="#">天猫会员</a></li>
-                        <li><a href="#">电器城</a></li>
-                        <li><a href="#">喵鲜生</a></li>
-                        <li><a href="#">医药馆</a></li>
-                        <li><a href="#">营业厅</a></li>
-                        <li><a href="#">魅力惠</a></li>
-                        <li><a href="#">飞猪旅行</a></li>
-                    </ul>
+                    <a href="#"><img src="{{ asset('web/img/tm_cs.png') }}"></a>
+                    <a href="#"><img src="{{ asset('web/img/tm_gj.png') }}"></a>
+                    <a href="#">天猫会员</a>
+                    <a href="#">电器城</a>
+                    <a href="#">喵鲜生</a>
+                    <a href="#">医药馆</a>
+                    <a href="#">营业厅</a>
+                    <a href="#">魅力惠</a>
+                    <a href="#">飞猪旅行</a>
                 </div>
             </div>
         </div>
@@ -42,85 +40,94 @@
                 </div>
                 <div class="menu_child" id="menu_child">
                     <div class="panel_content">
-                        <dl>
-                            <dt><a href="#">电子书</a></dt>
-                            <dd>
-                                <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
-                                <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
-                                <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
-                                <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
-                                <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
-                                <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">数字音乐</a></dt>
-                            <dd>
-                                <a href="#">通俗流行</a> <a href="#">古典音乐</a> <a href="#">摇滚说唱</a> <a href="#">爵士蓝调</a>
-                                <a href="#">乡村民谣</a> <a href="#">有声读物</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">音像</a></dt>
-                            <dd>
-                                <a href="#">音乐</a> <a href="#">影视</a> <a href="#">教育音像</a> <a href="#">游戏</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">文艺</a></dt>
-                            <dd>
-                                <a href="#">小说</a> <a href="#">文学</a> <a href="#">青春文学</a> <a href="#">传记</a> <a
-                                        href="#">艺术</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">人文社科</a></dt>
-                            <dd>
-                                <a href="#">历史</a> <a href="#">心理学</a> <a href="#">政治/军事</a> <a href="#">国学/古籍</a>
-                                <a href="#">哲学/宗教</a> <a href="#">社会科学</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">经管励志</a></dt>
-                            <dd>
-                                <a href="#">经济</a> <a href="#">金融与投资</a> <a href="#">管理</a> <a href="#">励志与成功</a>
-                            </dd>
-                        </dl>
-                        <dl class="fore7">
-                            <dt><a href="#">生活</a></dt>
-                            <dd>
-                                <a href="#">家教与育儿</a> <a href="#">旅游/地图</a> <a href="#">烹饪/美食</a> <a href="#">时尚/美妆</a>
-                                <a href="#">家居</a> <a href="#">婚恋与两性</a> <a href="#">娱乐/休闲</a> <a href="#">健身与保健</a>
-                                <a href="#">动漫/幽默</a> <a href="#">体育/运动</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">科技</a></dt>
-                            <dd>
-                                <a href="#">科普</a> <a href="#">IT</a> <a href="#">建筑</a> <a href="#">医学</a> <a href="#">
-                                    工业技术</a> <a href="#">电子/通信</a> <a href="#">农林</a> <a href="#">科学与自然</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">少儿</a></dt>
-                            <dd>
-                                <a href="#">少儿</a> <a href="#">0-2岁</a> <a href="#">3-6岁</a> <a href="#">7-10岁</a>
-                                <a href="#">11-14岁</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">教育</a></dt>
-                            <dd>
-                                <a href="#">教材</a> <a href="#">中小学教辅</a> <a href="#">考试</a> <a href="#">外语学习</a>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">其它</a></dt>
-                            <dd>
-                                <a href="#">英文原版书</a> <a href="#">港台图书</a> <a href="#">工具书</a> <a href="#">套装书</a>
-                                <a href="#">杂志/期刊</a>
-                            </dd>
-                        </dl>
+                        <div class="panel_content_left">
+                            <dl>
+                                <dt><a href="#">电子书</a></dt>
+                                <dd>
+                                    <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
+                                    <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
+                                    <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
+                                    <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
+                                    <a href="#">免费</a> <a href="#">小说</a> <a href="#">励志与成功</a> <a href="#">婚恋/两性</a>
+                                    <a href="#">文学</a> <a href="#">经管</a> <a href="#">畅读VIP</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">数字音乐</a></dt>
+                                <dd>
+                                    <a href="#">通俗流行</a> <a href="#">古典音乐</a> <a href="#">摇滚说唱</a> <a href="#">爵士蓝调</a>
+                                    <a href="#">乡村民谣</a> <a href="#">有声读物</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">音像</a></dt>
+                                <dd>
+                                    <a href="#">音乐</a> <a href="#">影视</a> <a href="#">教育音像</a> <a href="#">游戏</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">文艺</a></dt>
+                                <dd>
+                                    <a href="#">小说</a> <a href="#">文学</a> <a href="#">青春文学</a> <a href="#">传记</a> <a
+                                            href="#">艺术</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">人文社科</a></dt>
+                                <dd>
+                                    <a href="#">历史</a> <a href="#">心理学</a> <a href="#">政治/军事</a> <a href="#">国学/古籍</a>
+                                    <a href="#">哲学/宗教</a> <a href="#">社会科学</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">经管励志</a></dt>
+                                <dd>
+                                    <a href="#">经济</a> <a href="#">金融与投资</a> <a href="#">管理</a> <a href="#">励志与成功</a>
+                                </dd>
+                            </dl>
+                            <dl class="fore7">
+                                <dt><a href="#">生活</a></dt>
+                                <dd>
+                                    <a href="#">家教与育儿</a> <a href="#">旅游/地图</a> <a href="#">烹饪/美食</a> <a
+                                            href="#">时尚/美妆</a>
+                                    <a href="#">家居</a> <a href="#">婚恋与两性</a> <a href="#">娱乐/休闲</a> <a href="#">健身与保健</a>
+                                    <a href="#">动漫/幽默</a> <a href="#">体育/运动</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">科技</a></dt>
+                                <dd>
+                                    <a href="#">科普</a> <a href="#">IT</a> <a href="#">建筑</a> <a href="#">医学</a> <a
+                                            href="#">
+                                        工业技术</a> <a href="#">电子/通信</a> <a href="#">农林</a> <a href="#">科学与自然</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">少儿</a></dt>
+                                <dd>
+                                    <a href="#">少儿</a> <a href="#">0-2岁</a> <a href="#">3-6岁</a> <a href="#">7-10岁</a>
+                                    <a href="#">11-14岁</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">教育</a></dt>
+                                <dd>
+                                    <a href="#">教材</a> <a href="#">中小学教辅</a> <a href="#">考试</a> <a href="#">外语学习</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt><a href="#">其它</a></dt>
+                                <dd>
+                                    <a href="#">英文原版书</a> <a href="#">港台图书</a> <a href="#">工具书</a> <a href="#">套装书</a>
+                                    <a href="#">杂志/期刊</a>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="panel_content_right">
+                            <div class="ad_con">
+
+                            </div>
+                        </div>
                     </div>
                     <div class="panel_content">2</div>
                     <div class="panel_content">3</div>
@@ -217,6 +224,67 @@
                             class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
+        {{--section--}}
+        <div id="section_a_title">
+            <div class="section_a_title_left">
+                <img src="{{ asset('web/img/section_a.png') }}">
+            </div>
+            <div class="section_a_title_right">
+                <a href="#">进口食品</a>
+                <a href="#">食品饮料</a>
+                <a href="#">粮油副食</a>
+                <a href="#">美容洗护</a>
+                <a href="#">家居家电</a>
+                <a href="#">家庭清洁</a>
+                <a href="#">母婴用品</a>
+                <a href="#">生鲜水果</a>
+            </div>
+        </div>
+        <div id="section_a_con">
+            <div class="section_a_con_1">
+                <img src="{{ asset('web/img/ad/ad_sec_1.png') }}">
+            </div>
+            <div class="section_a_con_2">
+                <div class="floor-item-content-wrap">1</div>
+                <div class="floor-item-content-wrap">2</div>
+                <div class="floor-item-content-wrap">3</div>
+                <div class="floor-item-content-wrap">4</div>
+                <div class="floor-item-content-wrap">5</div>
+                <div class="floor-item-content-wrap">6</div>
+                <div class="floor-item-content-wrap">7</div>
+                <div class="floor-item-content-wrap">8</div>
+            </div>
+        </div>
+
+        {{--section b--}}
+        <div id="section_b_title">
+            <div class="section_b_title_left">
+                <img src="{{ asset('web/img/section_b.png') }}">
+            </div>
+            <div class="section_b_title_right">
+                <a href="#">进口食品</a>
+                <a href="#">食品饮料</a>
+                <a href="#">粮油副食</a>
+                <a href="#">美容洗护</a>
+                <a href="#">家居家电</a>
+                <a href="#">家庭清洁</a>
+                <a href="#">母婴用品</a>
+                <a href="#">生鲜水果</a>
+            </div>
+        </div>
+        <div id="section_b_con">
+            <div class="floor-item-content-wrap">1</div>
+            <div class="floor-item-content-wrap">2</div>
+            <div class="floor-item-content-wrap">3</div>
+            <div class="floor-item-content-wrap">4</div>
+            <div class="floor-item-content-wrap">5</div>
+            <div class="floor-item-content-wrap">6</div>
+            <div class="floor-item-content-wrap">7</div>
+            <div class="floor-item-content-wrap">8</div>
+            <div class="floor-item-content-wrap">9</div>
+            <div class="floor-item-content-wrap">10</div>
+        </div>
+    </div>
     </div>{{--content结束div--}}
 
 @endsection
@@ -236,19 +304,19 @@
                 $(".menu_list ul li").find('a').css('color', "#ffffff");
                 _this.css('background-color', '#ffffff');
                 $(_this).find('a').css('color', 'red').css('font-weight', 'bold');
-                $('.menu_child div').css('display', 'none');
-                $('.menu_child div:eq(' + i + ')').css('display', 'block');
-                $('.menu_child div:eq(' + i + ')').hover(function () {
+                $('.menu_child .panel_content').css('display', 'none');
+                $('.menu_child .panel_content:eq(' + i + ')').css('display', 'block');
+                $('.menu_child .panel_content:eq(' + i + ')').hover(function () {
                     clearTimeout(t);
                     _this.css('background-color', '#ffffff');
                     $(_this).find('a').css('color', 'red').css('font-weight', 'bold');
-                    $('.menu_child div:eq(' + i + ')').css('display', 'block');
+                    $('.menu_child .panel_content:eq(' + i + ')').css('display', 'block');
                 }, function () {
                     clearTimeout(t);
                     t = setTimeout(function () {
                         $(_this).css('background-color', "rgba(0, 0, 0, 0.27)");
                         $(_this).find('a').css('color', '#ffffff').css('font-weight', 'bold');
-                        $('.menu_child div:eq(' + i + ')').css('display', 'none');
+                        $('.menu_child .panel_content:eq(' + i + ')').css('display', 'none');
                     }, 100);
                 });
             }, function () {
@@ -257,7 +325,7 @@
                 t = setTimeout(function () {
                     _this.css('background-color', "rgba(0, 0, 0, 0.27)");
                     _this.find('a').css('color', "#ffffff");
-                    $('.menu_child div:eq(' + i + ')').css('display', 'none');
+                    $('.menu_child .panel_content:eq(' + i + ')').css('display', 'none');
                 }, 100);
             });
         });
