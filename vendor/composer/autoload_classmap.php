@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Admin\\Controllers\\ExampleController' => $baseDir . '/app/Admin/Controllers/ExampleController.php',
     'App\\Admin\\Controllers\\HomeController' => $baseDir . '/app/Admin/Controllers/HomeController.php',
+    'App\\Admin\\Controllers\\rollPictureController' => $baseDir . '/app/Admin/Controllers/rollPictureController.php',
     'App\\Console\\Commands\\test_cw' => $baseDir . '/app/Console/Commands/test_cw.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -23,6 +24,7 @@ return array(
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\RollPicture' => $baseDir . '/app/Models/RollPicture.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
@@ -72,6 +74,7 @@ return array(
     'CreateGoodsTable' => $baseDir . '/database/migrations/2017_10_15_033504_create_goods_table.php',
     'CreateGoodsTypeTable' => $baseDir . '/database/migrations/2017_10_15_035048_create_goods_type_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateRollPictureTable' => $baseDir . '/database/migrations/2017_11_22_231522_create_roll_picture_table.php',
     'CreateShopTable' => $baseDir . '/database/migrations/2017_10_15_032657_create_shop_table.php',
     'CreateShopTypeTable' => $baseDir . '/database/migrations/2017_10_15_033014_create_shop_type_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

@@ -397,6 +397,7 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
     public static $classMap = array (
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
+        'App\\Admin\\Controllers\\rollPictureController' => __DIR__ . '/../..' . '/app/Admin/Controllers/rollPictureController.php',
         'App\\Console\\Commands\\test_cw' => __DIR__ . '/../..' . '/app/Console/Commands/test_cw.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -412,6 +413,7 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\RollPicture' => __DIR__ . '/../..' . '/app/Models/RollPicture.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -461,6 +463,7 @@ class ComposerStaticInita6e6af75f9905840bca894f7f1bd0f47
         'CreateGoodsTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_033504_create_goods_table.php',
         'CreateGoodsTypeTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_035048_create_goods_type_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateRollPictureTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_22_231522_create_roll_picture_table.php',
         'CreateShopTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_032657_create_shop_table.php',
         'CreateShopTypeTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_15_033014_create_shop_type_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
