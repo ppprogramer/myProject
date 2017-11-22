@@ -146,7 +146,11 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="{{asset('web/img/chrome-big.jpg')}}" alt="1 slide">
+                        @if(!empty($img[0]))
+                            <img src="{{asset('/uploads/'.$img[0])}}" alt="1 slide">
+                        @else
+                            <img src="{{asset('web/img/chrome-big.jpg')}}" alt="1 slide">
+                        @endif
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>Chrome</h1>
@@ -160,8 +164,11 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="{{asset('web/img/firefox-big.jpg')}}" alt="2 slide">
-
+                        @if(!empty($img[1]))
+                            <img src="{{asset('/uploads/'.$img[1])}}" alt="1 slide">
+                        @else
+                            <img src="{{asset('web/img/firefox-big.jpg')}}" alt="2 slide">
+                        @endif
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>Firefox</h1>
@@ -175,8 +182,11 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="{{asset('web/img/safari-big.jpg')}}" alt="3 slide">
-
+                        @if(!empty($img[2]))
+                            <img src="{{asset('/uploads/'.$img[2])}}" alt="1 slide">
+                        @else
+                            <img src="{{asset('web/img/safari-big.jpg')}}" alt="3 slide">
+                        @endif
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>Safari</h1>
@@ -190,8 +200,11 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="{{asset('web/img/opera-big.jpg')}}" alt="4 slide">
-
+                        @if(!empty($img[3]))
+                            <img src="{{asset('/uploads/'.$img[3])}}" alt="1 slide">
+                        @else
+                            <img src="{{asset('web/img/opera-big.jpg')}}" alt="4 slide">
+                        @endif
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>Opera</h1>
@@ -204,8 +217,11 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src="{{asset('web/img/ie-big.jpg')}}" alt="5 slide">
-
+                        @if(!empty($img[4]))
+                            <img src="{{asset('/uploads/'.$img[4])}}" alt="1 slide">
+                        @else
+                            <img src="{{asset('web/img/ie-big.jpg')}}" alt="5 slide">
+                        @endif
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>IE</h1>
