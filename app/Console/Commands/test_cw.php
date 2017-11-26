@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Item;
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Workerman\Worker;
 
 class test_cw extends Command
@@ -38,7 +41,66 @@ class test_cw extends Command
      */
     public function handle()
     {
-        //
+        DB::table('item')->truncate();
+        $client = new Client();
+        $res = $client->get('https://www.smzdm.com/fenlei', ['verify' => false]);
+        $content = (string)$res->getBody();
+        $first = [];
+        preg_match_all('/class=\"brand-waterfall\".*?class=\"title\"/si', $content, $data);
+        preg_match_all('/class=\"title\".*?\/div/si', $content, $first_tmp);
+
+        foreach ($first_tmp[0] as $key => $item) {
+            $first[$key] = $this->test($item)[0];
+        }
+        unset($first[17]);
+        $second = [];
+        foreach ($data[0] as $key => $datum) {
+            preg_match_all('/h3.*?\/h3/', $datum, $tmp);
+            foreach ($tmp[0] as $k => $item) {
+                $second[$key][$k] = $this->test($item);
+                $second[$key][$k]['third'] = $this->third_fun($datum);
+            }
+        }
+        $this->createItem($first, $second);
+    }
+
+    public function createItem($first, $second)
+    {
+        foreach ($first as $key => $item) {
+            Item::create([
+                'name' => $item,
+                'order' => $key,
+            ]);
+        }
+        $data = Item::where('pid', 0)->get();
+        foreach ($data as $key => $datum) {
+            $second_model = Item::create([
+                'name' => $second[$key][0][0],
+                'pid' => $datum->id,
+            ]);
+            foreach ($second[$key][0]['third'] as $item) {
+                Item::create([
+                    'name' => $item,
+                    'pid' => $second_model->id,
+                ]);
+            }
+        }
+    }
+
+    public function third_fun($data)
+    {
+        $third = [];
+        preg_match_all('/class=\"con\".*?\/div/si', $data, $third_tmp);
+        foreach ($third_tmp[0] as $key => $item) {
+            $third[$key] = $this->test($item);
+            return $third[0];
+        }
+    }
+
+    public function test($str)
+    {
+        preg_match_all('/[\x{4e00}-\x{9fff}]+/u', $str, $zh);
+        return $zh[0];
     }
 
     public function workerman()

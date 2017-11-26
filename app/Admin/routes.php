@@ -11,6 +11,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+    $router->resource('item', ItemController::class);
     $router->resource('rollPicture', RollPictureController::class);
 
 });

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Request;
  * @method AbstractFilter     day($column, $label = '')
  * @method AbstractFilter     month($column, $label = '')
  * @method AbstractFilter     year($column, $label = '')
+ * @method AbstractFilter     hidden($name, $value)
  */
 class Filter
 {
@@ -42,7 +43,7 @@ class Filter
      */
     protected $supports = [
         'equal', 'notEqual', 'ilike', 'like', 'gt', 'lt', 'between',
-        'where', 'in', 'notIn', 'date', 'day', 'month', 'year',
+        'where', 'in', 'notIn', 'date', 'day', 'month', 'year', 'hidden',
     ];
 
     /**
@@ -101,6 +102,16 @@ class Filter
     }
 
     /**
+     * Remove ID filter if needed.
+     */
+    public function removeIDFilterIfNeeded()
+    {
+        if (!$this->useIdFilter) {
+            array_shift($this->filters);
+        }
+    }
+
+    /**
      * Get all conditions of the filters.
      *
      * @return array
@@ -124,6 +135,8 @@ class Filter
         }
 
         $conditions = [];
+
+        $this->removeIDFilterIfNeeded();
 
         foreach ($this->filters() as $filter) {
             $conditions[] = $filter->condition($params);
@@ -167,15 +180,24 @@ class Filter
     }
 
     /**
+     * @param callable $callback
+     * @param int      $count
+     *
+     * @return bool
+     */
+    public function chunk(callable $callback, $count = 100)
+    {
+        return $this->model->addConditions($this->conditions())->chunk($callback, $count);
+    }
+
+    /**
      * Get the string contents of the filter view.
      *
      * @return \Illuminate\View\View|string
      */
     public function render()
     {
-        if (!$this->useIdFilter) {
-            array_shift($this->filters);
-        }
+        $this->removeIDFilterIfNeeded();
 
         if (empty($this->filters)) {
             return '';

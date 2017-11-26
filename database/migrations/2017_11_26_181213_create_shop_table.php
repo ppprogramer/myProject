@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGoodsInfoTable extends Migration
+class CreateShopTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateGoodsInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('goods_info', function (Blueprint $table) {
+        Schema::create('shop', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('goods_id');
-            $table->text('desc')->comment('详情描述');
-            $table->integer('brand_id')->comment('品牌');
-            $table->string('style')->comment('款式');
-            $table->integer('create_timestamp');
+            $table->string('name')->unique()->comment('店铺名');
+            $table->integer('user_id')->unique()->comment('店铺名');
+            $table->string('logo')->comment('店铺logo');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateGoodsInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goods_info');
+        Schema::dropIfExists('shop');
     }
 }

@@ -4,21 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShopTable extends Migration
+class CreateProductTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations.  产品表
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('shop', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('type_id');
-            $table->integer('user_id');
-            $table->integer('create_timestamp');
+            $table->string('name')->comment('产品名称');
+            $table->string('brand_id')->comment('品牌ID');
+            $table->integer('create_time')->comment('创建时间');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateShopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop');
+        Schema::dropIfExists('product');
     }
 }
