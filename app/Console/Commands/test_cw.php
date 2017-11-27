@@ -41,6 +41,11 @@ class test_cw extends Command
      */
     public function handle()
     {
+        //
+    }
+
+    public function item()
+    {
         DB::table('item')->truncate();
         $client = new Client();
         $res = $client->get('https://www.smzdm.com/fenlei', ['verify' => false]);
