@@ -38,7 +38,7 @@ class ItemController extends Controller
 
                     $form->select('pid', trans('admin.parent_id'))->options(Item::selectOptions());
                     $form->text('name', '类名')->rules('required');
-                    $form->icon('icon', trans('admin.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
+                    $form->icon('icon', trans('admin.icon'))->default('fa-bars')->help($this->iconHelp());
                     $column->append((new Box(trans('admin.new'), $form))->style('success'));
                 });
             });
@@ -113,7 +113,7 @@ class ItemController extends Controller
 
             $form->select('pid', trans('admin.parent_id'))->options(Item::selectOptions());
             $form->text('name', trans('admin.title'))->rules('required');
-            $form->icon('icon', trans('admin.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
+            $form->icon('icon', trans('admin.icon'))->default('fa-bars')->help($this->iconHelp());
 //            $form->text('uri', trans('admin.uri'));
 //            $form->multipleSelect('roles', trans('admin.roles'))->options(Item::all()->pluck('name', 'id'));
             $form->display('created_at', trans('admin.created_at'));
