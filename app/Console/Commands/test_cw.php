@@ -56,9 +56,10 @@ class test_cw extends Command
         $second = [];
         foreach ($data[0] as $key => $datum) {
             preg_match_all('/h3.*?\/h3/', $datum, $tmp);
+            $all_third = $this->third_fun($datum);
             foreach ($tmp[0] as $k => $item) {
                 $second[$key][$k] = $this->test($item);
-                $second[$key][$k]['third'] = $this->third_fun($datum);
+                $second[$key][$k]['third'] = $all_third[$k];
             }
         }
         $this->createItem($first, $second);
@@ -69,21 +70,24 @@ class test_cw extends Command
         foreach ($first as $key => $item) {
             Item::create([
                 'name' => $item,
-                'order' => $key,
+                'order' => $key + 1,
             ]);
         }
         $data = Item::where('pid', 0)->get();
-        foreach ($data as $key => $datum) {
-            $second_model = Item::create([
-                'name' => $second[$key][0][0],
-                'pid' => $datum->id,
-            ]);
-            foreach ($second[$key][0]['third'] as $item) {
-                Item::create([
-                    'name' => $item,
-                    'pid' => $second_model->id,
+        foreach ($second as $key => $datum) {
+            foreach ($datum as $k => $item) {
+                $second_model = Item::create([
+                    'name' => $item[0],
+                    'pid' => $data[$key]->id,
                 ]);
+                foreach ($item['third'] as $value) {
+                    Item::create([
+                        'name' => $value,
+                        'pid' => $second_model->id,
+                    ]);
+                }
             }
+
         }
     }
 
@@ -93,8 +97,8 @@ class test_cw extends Command
         preg_match_all('/class=\"con\".*?\/div/si', $data, $third_tmp);
         foreach ($third_tmp[0] as $key => $item) {
             $third[$key] = $this->test($item);
-            return $third[0];
         }
+        return $third;
     }
 
     public function test($str)
