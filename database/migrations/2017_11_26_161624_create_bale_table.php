@@ -19,7 +19,7 @@ class CreateBaleTable extends Migration
             $table->tinyInteger('type')->comment('类型:1-单个sku;2多个sku');
             $table->string('key')->comment('打包品key')->unique();
             $table->integer('user_id')->comment('用户ID');
-            $table->integer('shop_ip')->comment('店铺ID');
+            $table->integer('shop_id')->comment('店铺ID');
             $table->integer('create_time')->comment('创建时间');
             $table->timestamps();
         });

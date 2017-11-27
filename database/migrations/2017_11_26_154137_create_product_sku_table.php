@@ -23,7 +23,7 @@ class CreateProductSkuTable extends Migration
             $table->string('product_code')->comment('产品编号');
             $table->integer('create_time')->comment('创建时间');
             $table->integer('user_id')->comment('用户ID');
-            $table->integer('shop_ip')->comment('店铺ID');
+            $table->integer('shop_id')->comment('店铺ID');
             $table->timestamps();
         });
     }

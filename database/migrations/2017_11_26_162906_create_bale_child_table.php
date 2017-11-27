@@ -20,7 +20,7 @@ class CreateBaleChildTable extends Migration
             $table->integer('amount')->comment('数量');
             $table->float('price', 2)->comment('价格');
             $table->integer('user_id')->comment('用户ID');
-            $table->integer('shop_ip')->comment('店铺ID');
+            $table->integer('shop_id')->comment('店铺ID');
             $table->integer('create_time')->comment('创建时间');
             $table->timestamps();
         });

@@ -2,8 +2,9 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\RollPicture;
-
+use App\Models\Bale;
+use App\Models\Shop;
+use App\Models\User;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -11,7 +12,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class RollPictureController extends Controller
+class BaleController extends Controller
 {
     use ModelForm;
 
@@ -24,7 +25,7 @@ class RollPictureController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('轮播图管理');
+            $content->header('最终商品');
             $content->description('列表');
 
             $content->body($this->grid());
@@ -41,8 +42,8 @@ class RollPictureController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('轮播图管理');
-            $content->description('编辑');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +58,8 @@ class RollPictureController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('轮播图管理');
-            $content->description('添加');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form());
         });
@@ -71,19 +72,21 @@ class RollPictureController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(RollPicture::class, function (Grid $grid) {
+        return Admin::grid(Bale::class, function (Grid $grid) {
+
             $grid->id('ID')->sortable();
-            $grid->name('图片')->display(function () {
-                if ($this->name) {
-                    return "<img src='/uploads/$this->name' width='260' height='185'>";
-                }
-                return '';
+            $grid->key('商品标识');
+            $grid->type('SKU类型')->display(function () {
+                return $this->type == 1 ? '单SKU' : '组合SKU';
             });
-            $grid->status('状态')->display(function () {
-                return $this->status ? '使用' : '禁用';
+            $grid->column('所属账号')->display(function () {
+                return User::find($this->user_id)->account;
+            });
+            $grid->column('店铺名')->display(function () {
+                return Shop::find($this->user_id)->name;
             });
             $grid->created_at('创建时间');
-            $grid->updated_at('修改时间');
+            $grid->updated_at('编辑时间');
         });
     }
 
@@ -94,19 +97,12 @@ class RollPictureController extends Controller
      */
     protected function form()
     {
-        return Admin::form(RollPicture::class, function (Form $form) {
+        return Admin::form(Bale::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('name', '图片')->move('/admin/image')->name(function ($file) {
-                return md5(uniqid() . time()) . '.' . $file->guessExtension();
-            });
-            $form->switch('status', '开关');
-            $form->display('created_at', '添加时间');
-            $form->display('updated_at', '更新时间');
-            $form->hidden('create_timestamp', '更新时间');
-            $form->saving(function ($form) {
-                $form->create_timestamp = time();
-            });
+
+            $form->display('created_at', 'Created At');
+            $form->display('updated_at', 'Updated At');
         });
     }
 }
