@@ -8,9 +8,12 @@ use App\Models\User;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
+use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Layout\Row;
+use Encore\Admin\Widgets\Box;
 
 class BaleController extends Controller
 {
@@ -58,10 +61,26 @@ class BaleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
-
-            $content->body($this->form());
+            $content->header('商品');
+            $content->description('添加');
+            $return = trans('admin.back');
+            $list = trans('admin.list');
+            $route = '/admin/bale';
+            $menu = <<<EOT
+<div class="btn-group pull-right" style="margin-right: 10px">
+    <a href="$route" class="btn btn-sm btn-default"><i class="fa fa-list"></i>&nbsp;$list</a>
+</div>
+<div class="btn-group pull-right" style="margin-right: 10px">
+    <a class="btn btn-sm btn-default form-history-back" onclick="history.go(-1)">
+    <i class="fa fa-arrow-left"></i>&nbsp;$return</a>
+</div>
+EOT;
+            $content->row($menu);
+            $content->row(function (Row $row) {
+                $row->column(8, function (Column $column) {
+                    $column->append(new Box('', view('admin.view.bale')));
+                });
+            });
         });
     }
 
