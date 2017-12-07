@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Bale;
+use App\Models\Item;
 use App\Models\Shop;
 use App\Models\User;
 use Encore\Admin\Form;
@@ -60,7 +61,6 @@ class BaleController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-
             $content->header('商品');
             $content->description('添加');
             $return = trans('admin.back');
@@ -75,10 +75,11 @@ class BaleController extends Controller
     <i class="fa fa-arrow-left"></i>&nbsp;$return</a>
 </div>
 EOT;
+            $items = (new Item())->toTree();
             $content->row($menu);
-            $content->row(function (Row $row) {
-                $row->column(8, function (Column $column) {
-                    $column->append(new Box('', view('admin.view.bale')));
+            $content->row(function (Row $row) use ($items) {
+                $row->column(8, function (Column $column) use ($items) {
+                    $column->append(new Box('', view('admin.view.bale', ['items' => $items])));
                 });
             });
         });

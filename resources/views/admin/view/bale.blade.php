@@ -166,56 +166,24 @@
 <div class="first">
     <div class="treebox">
         <ul class="menu">
-            <li class="level1">
-                <a href="#none" class="current"><em class="ico ico1"></em>导航一<i class="down"></i></a>
-                <ul class="level2" style="display: block">
-                    <li>
-                        <a href="javascript:;">导航选项
-                            <div><p class="trilateral"></p></div>
-                        </a>
-
-                    </li>
-                    <li><a href="javascript:;">导航选项<div><p class="trilateral"></p></div></a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                </ul>
-            </li>
-            <li class="level1">
-                <a href="#none"><em class="ico ico2"></em>导航一<i></i></a>
-                <ul class="level2">
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                </ul>
-            </li>
-            <li class="level1">
-                <a href="#none"><em class="ico ico3"></em>导航一<i></i></a>
-                <ul class="level2">
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                </ul>
-            </li>
-            <li class="level1">
-                <a href="#none"><em class="ico ico4"></em>导航一<i></i></a>
-                <ul class="level2">
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                </ul>
-            </li>
-            <li class="level1">
-                <a href="#none"><em class="ico ico5"></em>导航一<i></i></a>
-                <ul class="level2">
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                    <li><a href="javascript:;">导航选项</a></li>
-                </ul>
-            </li>
+            @if(!empty($items))
+                @foreach($items as $item)
+                    <li class="level1">
+                        <a href="#none" class="current"><em class="ico ico1"></em>{{ $item['name'] }}<i
+                                    class="down"></i></a>
+                        @if(!empty($item['children']))
+                            <ul class="level2">
+                                @foreach($item['children'] as $child)
+                                    <li>
+                                        <a href="javascript:;">{{ $child['name'] }}
+                                            <div><p class="trilateral"></p></div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                    @endif
+                @endforeach
+            @endif
         </ul>
     </div>
 </div>
