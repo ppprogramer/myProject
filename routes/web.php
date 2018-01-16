@@ -14,7 +14,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'IndexController@index');
 
     //微信
-    Route::any('/wechat', 'WeChatController@serve');
+    Route::any('/wechat', 'WeChat\WeChatController@serve');
 });
 
 Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
