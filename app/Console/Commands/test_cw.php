@@ -41,7 +41,10 @@ class test_cw extends Command
      */
     public function handle()
     {
-        //
+        while (true) {
+            logger('cw', ['data' => []]);
+            sleep(10);
+        }
     }
 
     public function item()
