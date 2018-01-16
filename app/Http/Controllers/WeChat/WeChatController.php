@@ -3,17 +3,31 @@
 namespace App\Http\Controllers\WeChat;
 
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 
 class WeChatController extends Controller
 {
+    protected $access_token;
+
     public function serve()
     {
-        header('Content-type:text');
-        if (isset($_GET['echostr'])) {
-            $this->valid();
-        } else {
-            $this->responseMsg();
-        }
+        $app = app('wechat.official_account');
+        $app->server->push(function($message){
+            return "欢迎关注 overtrue！";
+        });
+
+        return $app->server->serve();
+//        if (session()->has('access_token')) {
+//            $this->access_token = session()->get('access_token');
+//        } else {
+//
+//        }
+//        header('Content-type:text');
+//        if (isset($_GET['echostr'])) {
+//            $this->valid();
+//        } else {
+//            $this->responseMsg();
+//        }
     }
 
     public function valid()
@@ -63,6 +77,7 @@ class WeChatController extends Controller
                         <Content><![CDATA[%s]]></Content>
                         <FuncFlag>0</FuncFlag>
                         </xml>";
+
             if ($keyword == "?" || $keyword == "？") {
                 $msgType = "text";
                 $contentStr = date("Y-m-d H:i:s", time());
@@ -73,5 +88,14 @@ class WeChatController extends Controller
             echo "";
             exit;
         }
+    }
+
+    public function getAccessToken()
+    {
+        $appId = env('WECHAT_OFFICIAL_ACCOUNT_APPID');
+        $secret = env('WECHAT_OFFICIAL_ACCOUNT_SECRET');
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$appId&secret=$secret";
+        $client = new Client();
+//        $result =
     }
 }
