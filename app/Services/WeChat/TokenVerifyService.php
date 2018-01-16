@@ -1,21 +1,8 @@
 <?php
+namespace App\Services\WeChat;
 
-namespace App\Http\Controllers\WeChat;
-
-use App\Http\Controllers\Controller;
-
-class WeChatController extends Controller
+class TokenVerifyService
 {
-    public function serve()
-    {
-        header('Content-type:text');
-        if (isset($_GET['echostr'])) {
-            $this->valid();
-        } else {
-            $this->responseMsg();
-        }
-    }
-
     public function valid()
     {
         $echoStr = $_GET["echostr"];
