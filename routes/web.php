@@ -14,4 +14,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'IndexController@index');
 });
 
+Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+    Route::get('/user', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+        dd($user);
+    });
+    //微信
+    Route::any('/wechat', 'WeChatController@serve');
+});
+
+
+
 

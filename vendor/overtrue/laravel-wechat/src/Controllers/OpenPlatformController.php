@@ -1,45 +1,47 @@
 <?php
 
-namespace Overtrue\LaravelWechat\Controllers;
+/*
+ * This file is part of the overtrue/laravel-wechat.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+namespace Overtrue\LaravelWeChat\Controllers;
+
+use EasyWeChat\OpenPlatform\Application;
+use EasyWeChat\OpenPlatform\Server\Guard;
 use Event;
-use EasyWeChat\Foundation\Application;
-use Overtrue\LaravelWechat\Events\OpenPlatform as Events;
+use Overtrue\LaravelWeChat\Events\OpenPlatform as Events;
 
-class OpenPlatformController
+class OpenPlatformController extends Controller
 {
-    /**
-     * Events.
-     *
-     * @var array
-     */
-    protected $events = [
-        'authorized' => Events\Authorized::class,
-        'unauthorized' => Events\Unauthorized::class,
-        'updateauthorized' => Events\UpdateAuthorized::class,
-    ];
-
     /**
      * Register for open platform.
      *
-     * @param \EasyWeChat\Foundation\Application $application
+     * @param \EasyWeChat\OpenPlatform\Application $application
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Application $application)
+    public function __invoke(Application $application)
     {
-        return $application->open_platform->server->setMessageHandler([$this, 'handle'])->serve();
-    }
+        $server = $application->server;
 
-    /**
-     * Handle event message and fire event.
-     *
-     * @param \EasyWeChat\Support\Collection $message
-     */
-    public function handle($message)
-    {
-        if ($event = array_get($this->events, $message->InfoType)) {
-            Event::fire(new $event($message));
-        }
+        $server->on(Guard::EVENT_AUTHORIZED, function ($payload) {
+            Event::fire(new Events\Authorized($payload));
+        });
+        $server->on(Guard::EVENT_UNAUTHORIZED, function ($payload) {
+            Event::fire(new Events\Unauthorized($payload));
+        });
+        $server->on(Guard::EVENT_UPDATE_AUTHORIZED, function ($payload) {
+            Event::fire(new Events\UpdateAuthorized($payload));
+        });
+        $server->on(Guard::EVENT_COMPONENT_VERIFY_TICKET, function ($payload) {
+            Event::fire(new Events\VerifyTicketRefreshed($payload));
+        });
+
+        return $server->serve();
     }
 }

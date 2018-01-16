@@ -1,80 +1,73 @@
 <?php
 
-namespace Overtrue\LaravelWechat;
-
-use Doctrine\Common\Cache\Cache as CacheInterface;
-use Illuminate\Support\Facades\Cache;
-
-/**
- * Cache bridge for laravel.
+/*
+ * This file is part of the overtrue/laravel-wechat.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
+namespace Overtrue\LaravelWeChat;
+
+use Illuminate\Cache\Repository;
+use Psr\SimpleCache\CacheInterface;
+
 class CacheBridge implements CacheInterface
 {
     /**
-     * Fetches an entry from the cache.
-     *
-     * @param string $id The id of the cache entry to fetch.
-     *
-     * @return mixed The cached data or FALSE, if no cache entry exists for the given id.
+     * @var \Illuminate\Cache\Repository
      */
-    public function fetch($id)
-    {
-        return Cache::get($id);
-    }
+    protected $repository;
 
     /**
-     * Tests if an entry exists in the cache.
-     *
-     * @param string $id The cache id of the entry to check for.
-     *
-     * @return bool TRUE if a cache entry exists for the given cache id, FALSE otherwise.
+     * @param \Illuminate\Cache\Repository $repository
      */
-    public function contains($id)
+    public function __construct(Repository $repository)
     {
-        return Cache::has($id);
+        $this->repository = $repository;
     }
 
-    /**
-     * Puts data into the cache.
-     *
-     * If a cache entry with the given id already exists, its data will be replaced.
-     *
-     * @param string $id       The cache id.
-     * @param mixed  $data     The cache entry/data.
-     * @param int    $lifeTime The lifetime in number of seconds for this cache entry.
-     *                         If zero (the default), the entry never expires (although it may be deleted from the cache
-     *                         to make place for other entries).
-     *
-     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.
-     */
-    public function save($id, $data, $lifeTime = 0)
+    public function get($key, $default = null)
     {
-        if ($lifeTime == 0) {
-            return Cache::forever($id, $data);
+        return $this->repository->get($key, $default);
+    }
+
+    public function set($key, $value, $ttl = null)
+    {
+        return $this->repository->put($key, $value, $this->toMinutes($ttl));
+    }
+
+    public function delete($key)
+    {
+    }
+
+    public function clear()
+    {
+    }
+
+    public function getMultiple($keys, $default = null)
+    {
+    }
+
+    public function setMultiple($values, $ttl = null)
+    {
+    }
+
+    public function deleteMultiple($keys)
+    {
+    }
+
+    public function has($key)
+    {
+        return $this->repository->has($key);
+    }
+
+    protected function toMinutes($ttl = null)
+    {
+        if (!is_null($ttl)) {
+            return $ttl / 60;
         }
-        
-        return Cache::put($id, $data, $lifeTime / 60);
-    }
-
-    /**
-     * Deletes a cache entry.
-     *
-     * @param string $id The cache id.
-     *
-     * @return bool TRUE if the cache entry was successfully deleted, FALSE otherwise.
-     *              Deleting a non-existing entry is considered successful.
-     */
-    public function delete($id)
-    {
-        return Cache::forget($id);
-    }
-
-    /**
-     * Retrieves cached information from the data store.
-     *
-     * @return array|null An associative array with server's statistics if available, NULL otherwise.
-     */
-    public function getStats()
-    {
     }
 }

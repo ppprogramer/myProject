@@ -10,22 +10,21 @@
         }
     ],
     "require": {
-        "overtrue/wechat": "^3.3.3"
+        "illuminate/container": "^5.1",
+        "overtrue/wechat": "^4.0"
     },
     "autoload": {
         "psr-4": {
-            "Overtrue\\LaravelWechat\\": "src/"
+            "Overtrue\\LaravelWeChat\\": "src/"
         }
     },
-    "license": "MIT",
-    "minimum-stability" : "dev",
     "extra": {
         "laravel": {
             "providers": [
-                "Overtrue\\LaravelWechat\\ServiceProvider"
+                "Overtrue\\LaravelWeChat\\ServiceProvider"
             ],
             "aliases": {
-                "EasyWeChat": "Overtrue\\LaravelWechat\\Facade"
+                "EasyWeChat": "Overtrue\\LaravelWeChat\\Facade"
             }
         }
     }

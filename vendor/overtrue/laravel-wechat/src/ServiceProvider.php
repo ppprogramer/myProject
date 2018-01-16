@@ -1,48 +1,48 @@
 <?php
 
-namespace Overtrue\LaravelWechat;
+/*
+ * This file is part of the overtrue/laravel-wechat.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-use EasyWeChat\Foundation\Application as EasyWeChat;
+namespace Overtrue\LaravelWeChat;
+
+use EasyWeChat\MiniProgram\Application as MiniProgram;
+use EasyWeChat\OfficialAccount\Application as OfficialAccount;
+use EasyWeChat\OpenPlatform\Application as OpenPlatform;
+use EasyWeChat\Payment\Application as Payment;
+use EasyWeChat\Work\Application as Work;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
-use Overtrue\LaravelWechat\Routing\Router;
-use Overtrue\Socialite\User as SocialiteUser;
 
+/**
+ * Class ServiceProvider.
+ *
+ * @author overtrue <i@overtrue.me>
+ */
 class ServiceProvider extends LaravelServiceProvider
 {
     /**
      * Boot the provider.
-     *
-     * @return void
      */
     public function boot()
     {
-        $this->setupConfig();
-
-        if ($this->config('route.enabled')) {
-            $this->registerRoutes();
-        }
     }
 
     /**
      * Setup the config.
-     *
-     * @return void
      */
     protected function setupConfig()
     {
         $source = realpath(__DIR__.'/config.php');
 
-        if ($this->app instanceof LaravelApplication) {
-            if ($this->app->runningInConsole()) {
-                $this->publishes([
-                    $source => config_path('wechat.php'),
-                ]);
-            }
-
-            // 创建模拟授权
-            $this->setUpMockAuthUser();
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('wechat.php')], 'laravel-wechat');
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('wechat');
         }
@@ -52,81 +52,64 @@ class ServiceProvider extends LaravelServiceProvider
 
     /**
      * Register the provider.
-     *
-     * @return void
      */
     public function register()
     {
-        $this->app->singleton(EasyWeChat::class, function ($app) {
-            $easywechat = new EasyWeChat(config('wechat'));
-            if (config('wechat.use_laravel_cache')) {
-                $easywechat->cache = new CacheBridge();
+        $this->setupConfig();
+
+        $apps = [
+            'official_account' => OfficialAccount::class,
+            'work' => Work::class,
+            'mini_program' => MiniProgram::class,
+            'payment' => Payment::class,
+            'open_platform' => OpenPlatform::class,
+        ];
+
+        foreach ($apps as $name => $class) {
+            if (empty(config('wechat.'.$name))) {
+                continue;
             }
-            $easywechat->server->setRequest($app['request']);
 
-            return $easywechat;
-        });
+            if ($config = config('wechat.route.'.$name)) {
+                $this->getRouter()->group($config['attributes'], function ($router) use ($config) {
+                    $router->post($config['uri'], $config['action']);
+                });
+            }
 
-        $this->app->alias(EasyWeChat::class, 'wechat');
-        $this->app->alias(EasyWeChat::class, 'easywechat');
-    }
+            if (empty(config('wechat.'.$name.'.default'))) {
+                $accounts = [
+                    'default' => config('wechat.'.$name),
+                ];
+                config(['wechat.'.$name.'.default' => $accounts]);
+            } else {
+                $accounts = config('wechat.'.$name);
+            }
 
-    /**
-     * 创建模拟登录.
-     */
-    protected function setUpMockAuthUser()
-    {
-        $user = config('wechat.mock_user');
+            foreach ($accounts as $account => $config) {
+                $this->app->singleton("wechat.{$name}.{$account}", function ($laravelApp) use ($name, $account, $config, $class) {
+                    $app = new $class(array_merge(config('wechat.defaults', []), $config));
+                    if (config('wechat.defaults.use_laravel_cache')) {
+                        $app['cache'] = new CacheBridge($laravelApp['cache.store']);
+                    }
+                    $app['request'] = $laravelApp['request'];
 
-        if (is_array($user) && !empty($user['openid']) && config('wechat.enable_mock')) {
-            $user = new SocialiteUser([
-                'id'       => array_get($user, 'openid'),
-                'name'     => array_get($user, 'nickname'),
-                'nickname' => array_get($user, 'nickname'),
-                'avatar'   => array_get($user, 'headimgurl'),
-                'email'    => null,
-                'original' => array_merge($user, ['privilege' => []]),
-            ]);
+                    return $app;
+                });
+            }
+            $this->app->alias("wechat.{$name}.default", 'wechat.'.$name);
+            $this->app->alias("wechat.{$name}.default", 'easywechat.'.$name);
 
-            session(['wechat.oauth_user' => $user]);
+            $this->app->alias('wechat.'.$name, $class);
+            $this->app->alias('easywechat.'.$name, $class);
         }
     }
 
-    /**
-     * Register routes.
-     */
-    protected function registerRoutes()
+    protected function getRouter()
     {
-        $router = new Router($this->app);
+        if ($this->app instanceof LumenApplication && !class_exists('Laravel\Lumen\Routing\Router')) {
+            return $this->app;
+        }
 
-        $router->group($this->routeAttributes(), function () use ($router) {
-            $router->any($this->config('route.open_platform_serve_url'), 'OpenPlatformController@index');
-        });
-    }
-
-
-    /**
-     * Get Route attributes.
-     *
-     * @return array
-     */
-    public function routeAttributes()
-    {
-        return array_merge($this->config('route.attributes', []), [
-            'namespace' => '\\Overtrue\\LaravelWechat\\Controllers',
-        ]);
-    }
-
-    /**
-     * Get config value by key.
-     *
-     * @param string $key
-     * @param mixed|null $default
-     *
-     * @return mixed
-     */
-    private function config($key, $default = null)
-    {
-        return $this->app->make('config')->get("wechat.{$key}", $default);
+        return $this->app->router;
     }
 }

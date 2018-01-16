@@ -10,7 +10,7 @@
         "encore/laravel-admin": "1.5.*",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "overtrue/laravel-wechat": "^3.1",
+        "overtrue/laravel-wechat": "^4.0",
         "workerman/gatewayclient": "^3.0",
         "workerman/workerman-for-win": "^3.5"
     },
