@@ -9,6 +9,7 @@ class WeChatController extends Controller
 {
     public function serve()
     {
+        logger('cw', ['data' => 'ddd']);
         header('Content-type:text');
         if (isset($_GET['echostr'])) {
             $this->valid();
