@@ -100,7 +100,7 @@ class MaterialController extends Controller
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
                 $app = app('wechat.official_account');
-                $result = $app->material->uploadImage("/uploads/$form->path");
+                $result = $app->material->uploadImage("/uploads/$form->name");
                 $form->media_id = $result['media_id'];
                 $form->url = $result['url'];
             });
