@@ -7,15 +7,19 @@ use GuzzleHttp\Client;
 
 class WeChatController extends Controller
 {
-    protected $access_token;
 
     public function serve()
     {
         $app = app('wechat.official_account');
-        $app->server->push(function ($message) {
+        $app->server->push(function ($message) use ($app) {
             logger('ce', ['data' => $message]);
+            $user = $app->user->get($message['FromUserName']);
+            logger('user', ['data' => $user]);
             switch ($message['MsgType']) {
                 case 'event':
+                    if (!empty($message['EventKey']) && $message['EventKey'] == 'V1001_TODAY_MUSIC') {
+                        return '你点击今日歌曲';
+                    }
                     return '收到事件消息';
                     break;
                 case 'text':
