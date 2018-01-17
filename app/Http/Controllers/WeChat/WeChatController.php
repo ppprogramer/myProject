@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WeChat;
 
 use App\Http\Controllers\Controller;
+use App\Models\WeChat\WeChatUsers;
 use GuzzleHttp\Client;
 
 class WeChatController extends Controller
@@ -13,12 +14,33 @@ class WeChatController extends Controller
         $app = app('wechat.official_account');
         $app->server->push(function ($message) use ($app) {
             logger('ce', ['data' => $message]);
-            $user = $app->user->get($message['FromUserName']);
+            $user = $app->user->get($message['FromUserName']);          //todo 注释
             logger('user', ['data' => $user]);
             switch ($message['MsgType']) {
                 case 'event':
-                    if (!empty($message['EventKey']) && $message['EventKey'] == 'V1001_TODAY_MUSIC') {
-                        return '你点击今日歌曲';
+                    $openId = $message['FromUserName'];
+                    switch ($message['Event']) {
+                        case 'subscribe':           //关注事件
+                            $wx_user = WeChatUsers::where('openid', $openId)->first();
+                            //判断用户是否存在
+                            if ($wx_user) {
+                                //如果为取消关注状态，则设为关注状态
+                                if ($wx_user->subscribe == 1) $wx_user->update(['subscribe' => 0]);
+                            } else {
+                                //否则，记录用户
+                                $user = $app->user->get($message['FromUserName']);
+                                $user['create_timestamp'] = time();
+                                WeChatUsers::create($user);
+                            }
+                            break;
+                        case 'unsubscribe':         //取关事件
+                            WeChatUsers::where('openid', $openId)->update(['subscribe' => 0]);
+                            break;
+                        case 'click':
+                            if (!empty($message['EventKey']) && $message['EventKey'] == 'V1001_TODAY_MUSIC') {
+                                return '你点击今日歌曲';
+                            }
+                            break;
                     }
                     return '收到事件消息';
                     break;
