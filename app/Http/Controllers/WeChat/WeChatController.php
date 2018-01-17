@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 
 class WeChatController extends Controller
 {
-
     public function serve()
     {
         $app = app('wechat.official_account');
@@ -27,23 +26,10 @@ class WeChatController extends Controller
                             } else {
                                 //否则，记录用户
                                 $user = $app->user->get($message['FromUserName']);
-                                logger('user', ['data' => $user]);
-                                $data = [
-                                    'openid' => $user['openid'],
-                                    'subscribe' => $user['subscribe'],
-                                    'nickname' => $user['nickname'],
-                                    'sex' => $user['sex'],
-                                    'language' => $user['language'],
-                                    'city' => $user['city'],
-                                    'province' => $user['province'],
-                                    'country' => $user['country'],
-                                    'headimgurl' => $user['headimgurl'],
-                                    'remark,' => $user['remark'],
-                                    'groupid' => $user['groupid'],
-                                    'tagid_list' => $user['tagid_list'],
-                                    'create_timestamp' => time(),
-                                ];
-                                WeChatUsers::create($data);
+                                $user = array_filter($user);
+                                $user['create_timestamp'] = time();
+                                WeChatUsers::create($user);
+                                return '欢迎关注蛤蛤！';
                             }
                             break;
                         case 'unsubscribe':         //取关事件
