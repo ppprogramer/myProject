@@ -14,8 +14,6 @@ class WeChatController extends Controller
         $app = app('wechat.official_account');
         $app->server->push(function ($message) use ($app) {
             logger('ce', ['data' => $message]);
-            $user = $app->user->get($message['FromUserName']);          //todo 注释
-            logger('user', ['data' => $user]);
             switch ($message['MsgType']) {
                 case 'event':
                     $openId = $message['FromUserName'];
@@ -29,6 +27,7 @@ class WeChatController extends Controller
                             } else {
                                 //否则，记录用户
                                 $user = $app->user->get($message['FromUserName']);
+                                logger('user', ['data' => $user]);
                                 $user['create_timestamp'] = time();
                                 WeChatUsers::create($user);
                             }

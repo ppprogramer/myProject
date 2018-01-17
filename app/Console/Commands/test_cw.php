@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Item;
+use App\Models\WeChat\WeChatUsers;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
@@ -44,7 +45,7 @@ class test_cw extends Command
      */
     public function handle()
     {
-        logger('access_token', ['data' =>app('')]);
+        //
     }
 
     public function item()
