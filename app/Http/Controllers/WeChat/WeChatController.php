@@ -28,8 +28,12 @@ class WeChatController extends Controller
                                 //否则，记录用户
                                 $user = $app->user->get($message['FromUserName']);
                                 logger('user', ['data' => $user]);
-                                $user['create_timestamp'] = time();
-                                WeChatUsers::create($user);
+                                $data = [
+                                    'openid' => $user['openid'],
+                                    'subscribe' => $user['subscribe'],
+                                    'create_timestamp' => time(),
+                                ];
+                                WeChatUsers::create($data);
                             }
                             break;
                         case 'unsubscribe':         //取关事件
