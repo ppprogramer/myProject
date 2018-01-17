@@ -36,7 +36,7 @@ class WeChatController extends Controller
                         case 'unsubscribe':         //取关事件
                             WeChatUsers::where('openid', $openId)->update(['subscribe' => 0]);
                             break;
-                        case 'click':
+                        case 'CLICK':
                             if (!empty($message['EventKey']) && $message['EventKey'] == 'V1001_TODAY_MUSIC') {
                                 return '你点击今日歌曲';
                             }
