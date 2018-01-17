@@ -31,6 +31,16 @@ class WeChatController extends Controller
                                 $data = [
                                     'openid' => $user['openid'],
                                     'subscribe' => $user['subscribe'],
+                                    'nickname' => $user['nickname'],
+                                    'sex' => $user['sex'],
+                                    'language' => $user['language'],
+                                    'city' => $user['city'],
+                                    'province' => $user['province'],
+                                    'country' => $user['country'],
+                                    'headimgurl' => $user['headimgurl'],
+                                    'remark,' => $user['remark'],
+                                    'groupid' => $user['groupid'],
+                                    'tagid_list' => $user['tagid_list'],
                                     'create_timestamp' => time(),
                                 ];
                                 WeChatUsers::create($data);
