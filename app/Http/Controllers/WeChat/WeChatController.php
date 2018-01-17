@@ -12,7 +12,8 @@ class WeChatController extends Controller
     public function serve()
     {
         $app = app('wechat.official_account');
-        $app->server->push(function($message){
+        $app->server->push(function ($message) {
+            logger('ce', ['data' => $message]);
             switch ($message['MsgType']) {
                 case 'event':
                     return '收到事件消息';

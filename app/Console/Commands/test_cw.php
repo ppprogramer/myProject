@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use App\Models\Item;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use Workerman\Worker;
 
 class test_cw extends Command
@@ -15,7 +17,8 @@ class test_cw extends Command
      *
      * @var string
      */
-    protected $signature = 'test:cw.php';
+//    protected $signature = 'test:cw.php';
+    protected $signature = 'cw';
 
     /**
      * The console command description.
@@ -41,10 +44,7 @@ class test_cw extends Command
      */
     public function handle()
     {
-        while (true) {
-            logger('cw', ['data' => []]);
-            sleep(10);
-        }
+        logger('access_token', ['data' =>app('')]);
     }
 
     public function item()
