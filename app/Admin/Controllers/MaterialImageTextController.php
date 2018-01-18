@@ -156,7 +156,7 @@ class MaterialImageTextController extends Controller
             $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');
                 $imageText = WeChatMaterialImageText::find($form->model()->id);
-                $app->material->updateArticle($imageText->mediaId, [
+                $app->material->updateArticle($imageText->media_id, [
                     'title' => $imageText->title,
                     'thumb_media_id' => $imageText->thumb_media_id,
                     'author' => $imageText->author,
