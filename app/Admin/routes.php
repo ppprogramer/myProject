@@ -15,6 +15,6 @@ Route::group([
     $router->resource('bale', BaleController::class);
     $router->resource('rollPicture', RollPictureController::class);
     $router->resource('material/image', MaterialImageController::class);
-    $router->resource('material/imageText', MaterialImageController::class);
+    $router->resource('material/imageText', MaterialImageTextController::class);
 
 });

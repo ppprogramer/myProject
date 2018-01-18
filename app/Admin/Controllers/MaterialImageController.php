@@ -14,6 +14,8 @@ class MaterialImageController extends Controller
 {
     use ModelForm;
 
+    protected $type = 1;            //图片素材
+
     /**
      * Index interface.
      *
@@ -96,7 +98,7 @@ class MaterialImageController extends Controller
         return Admin::form(WeChatMaterial::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('name', '图片')->move('/admin/image')->name(function ($file) {
+            $form->image('name', '图片')->move('/admin/material/image')->name(function ($file) {
                 return md5(uniqid() . time()) . '.' . $file->guessExtension();
             });
             $form->hidden('create_timestamp', '更新时间');
@@ -105,7 +107,7 @@ class MaterialImageController extends Controller
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
-                $form->type = 1;
+                $form->type = $this->type;
             });
             $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');

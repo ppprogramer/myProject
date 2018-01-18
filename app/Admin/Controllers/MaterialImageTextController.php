@@ -2,13 +2,15 @@
 
 namespace App\Admin\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\WeChat\WeChatMaterial;
+use App\Models\WeChat\WeChatMaterialImageText;
+use EasyWeChat\Kernel\Messages\Article;
+use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
-use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
-use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\ModelForm;
 
 class MaterialImageTextController extends Controller
 {
@@ -70,17 +72,18 @@ class MaterialImageTextController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(WeChatMaterial::class, function (Grid $grid) {
+        return Admin::grid(WeChatMaterialImageText::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->media_id('素材ID');
-            $grid->name('图片')->display(function () {
-                if ($this->name) {
-                    return "<img src='/uploads/$this->name' width='260' height='185'>";
-                }
-                return '';
-            });
-//            $grid->type('素材类型');
+            $grid->thumb_media_id('图片ID');
+            $grid->title('标题');
+            $grid->content('内容');
+            $grid->author('作者');
+            $grid->digest('摘要');
+            $grid->show_cover_pic('封面显示');
+            $grid->content_source_url('文章原地址');
+
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
         });
@@ -93,29 +96,38 @@ class MaterialImageTextController extends Controller
      */
     protected function form()
     {
-        return Admin::form(WeChatMaterial::class, function (Form $form) {
+        return Admin::form(WeChatMaterialImageText::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('name', '图片')->move('/admin/image')->name(function ($file) {
-                return md5(uniqid() . time()) . '.' . $file->guessExtension();
-            });
+            $form->text('title', '文章标题')->rules('required');
+            $form->textarea('content', '内容')->rules('required');
+            $form->select('thumb_media_id')->options(WeChatMaterial::all()->pluck('id', 'media_id'))->rules('required');
+            $form->text('author', '作者');
+            $form->text('digest', '摘要');
+            $form->switch('show_cover_pic', '显示封面')->rules('required');
+            $form->text('content_source_url', '文章原地址')->rules('required');
             $form->hidden('create_timestamp', '更新时间');
-            $form->hidden('type', '类型');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
-                $form->type = 1;
             });
             $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');
-                $material = WeChatMaterial::find($form->model()->id);
-                $filePath = public_path("/uploads/$material->name");
-                $result = $app->material->uploadImage($filePath);
+                $imageText = WeChatMaterialImageText::find($form->model()->id);
+                $article = new Article([
+                    'title' => $imageText->title,
+                    'thumb_media_id' => $imageText->thumb_media_id,
+                    'author' => $imageText->author,
+                    'digest' => $imageText->digest,
+                    'show_cover_pic' => $imageText->show_cover_pic,
+                    'content' => $imageText->content,
+                    'content_source_url' => $imageText->content_source_url,
+                ]);
+                $result = $app->material->uploadArticle($article);
                 logger('material', ['data' => $result]);
                 $media_id = $result['media_id'];
-                $url = $result['url'];
-                $material->update(['media_id' => $media_id, 'url' => $url]);
+                $imageText->update(['media_id' => $media_id]);
             });
         });
     }
