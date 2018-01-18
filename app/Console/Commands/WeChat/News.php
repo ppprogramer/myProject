@@ -3,6 +3,7 @@
 namespace App\Console\Commands\WeChat;
 
 use App\Models\WeChat\WeChatMaterialImageText;
+use App\Models\WeChat\WeChatUsers;
 use Illuminate\Console\Command;
 
 class News extends Command
@@ -40,6 +41,10 @@ class News extends Command
     {
         $app = app('wechat.official_account');
         $materialImageText = WeChatMaterialImageText::first();
-        if ($materialImageText) $app->broadcasting->sendNews($materialImageText->media_id);
+        $weChatUser = WeChatUsers::where('subscribe', 1)->get();
+        foreach ($weChatUser as $item) {
+            if ($materialImageText)
+                $app->broadcasting->previewNews($materialImageText->media_id, $item->openid);
+        }
     }
 }
