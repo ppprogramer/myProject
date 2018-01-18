@@ -4,7 +4,9 @@ namespace App\Http\Controllers\WeChat;
 
 use App\Http\Controllers\Controller;
 use App\Models\WeChat\WeChatMaterial;
+use App\Models\WeChat\WeChatMaterialImageText;
 use App\Models\WeChat\WeChatUsers;
+use EasyWeChat\Kernel\Messages\Article;
 use EasyWeChat\Kernel\Messages\Image;
 use GuzzleHttp\Client;
 
@@ -49,6 +51,9 @@ class WeChatController extends Controller
                     if ($message['Content'] == "图片") {
                         $material = WeChatMaterial::first();
                         if ($material) return new Image($material->media_id);
+                    } else if ($message['Content'] == "今日消息") {
+                        $imageText = WeChatMaterialImageText::first();
+                        if ($imageText) return new Article([$imageText->media_id]);
                     }
                     return '收到文字消息';
                     break;
@@ -82,7 +87,7 @@ class WeChatController extends Controller
         header('Content-type:text');
         if (isset($_GET['echostr'])) {
             $this->valid();
-        }else{
+        } else {
             $this->responseMsg();
         }
         $echoStr = $_GET["echostr"];
