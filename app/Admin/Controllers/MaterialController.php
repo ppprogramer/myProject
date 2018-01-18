@@ -94,10 +94,12 @@ class MaterialController extends Controller
                 return md5(uniqid() . time()) . '.' . $file->guessExtension();
             });
             $form->hidden('create_timestamp', '更新时间');
+            $form->hidden('type', '类型');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
+                $form->type = 1;
             });
             $form->saved(function ($form) {
                 $app = app('wechat.official_account');
