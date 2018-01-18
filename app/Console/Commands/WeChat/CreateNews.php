@@ -49,8 +49,7 @@ class CreateNews extends Command
             'content' => '著名书画家、摄影家、鉴藏家、诗人张山 　　张山字新志，斋号涵虚堂。著名书画家、摄影家、鉴藏家、诗人。现任中国书协鉴定评估委员、理事；中国美协陕西创作中心副秘书长；陕西省书协驻会副主席；省文联委员、副秘书长；陕西省文史馆馆员；陕西长城书画院院长；华西大学教授、西安工业大学特聘教授。被文化部评为全国“德艺双馨”书画家，2007年“影响力人物”；2008年奥林匹克美术大会，国画《青山依旧在，山高水又长》、诗书《圣火点燃世人情》获特等奖。 凤翔灵秀荫沟南张氏，书香雅和承祖辈贤德；　　 绳笔泥墨书少年心志，从军修正继初心不失；　　 惜纸蒙尘弃权名厚禄，案牍劳形振书协之风；　　 无心逐誉既功名加身，习古研帖叹知路修远。 　　第一次见张山先生的字，是他在省残联书画摄影作品展上的签名，一个“山”字写得像自然里拍下的景色一样，山底敦厚踏实，山峰灵秀豪迈。不知此“山”和他引以为豪的雍山有没有一点关联。又或许，家乡的美丽质朴和祖辈的贤德智慧早就融入了他的血液，随着他的足迹和笔划不断流淌蔓延。',
             'source_url' => 'http://tmall.utaer.com',
         ]);
-
-        $article1 = new Article([
+        $data1 = [
             'title' => 'title1',
             'thumb_media_id' => 'pgHx73CjDlGZxYL7eeZz5UwPSWuMtvxoN_MnnwmwIEg',
             'author' => 'cw',
@@ -58,7 +57,8 @@ class CreateNews extends Command
             'show_cover' => 1,
             'content' => '著名书画家、摄影家、鉴藏家、诗人张山 　　张山字新志，斋号涵虚堂。著名书画家、摄影家、鉴藏家、诗人。现任中国书协鉴定评估委员、理事；中国美协陕西创作中心副秘书长；陕西省书协驻会副主席；省文联委员、副秘书长；陕西省文史馆馆员；陕西长城书画院院长；华西大学教授、西安工业大学特聘教授。被文化部评为全国“德艺双馨”书画家，2007年“影响力人物”；2008年奥林匹克美术大会，国画《青山依旧在，山高水又长》、诗书《圣火点燃世人情》获特等奖。 凤翔灵秀荫沟南张氏，书香雅和承祖辈贤德；　　 绳笔泥墨书少年心志，从军修正继初心不失；　　 惜纸蒙尘弃权名厚禄，案牍劳形振书协之风；　　 无心逐誉既功名加身，习古研帖叹知路修远。 　　第一次见张山先生的字，是他在省残联书画摄影作品展上的签名，一个“山”字写得像自然里拍下的景色一样，山底敦厚踏实，山峰灵秀豪迈。不知此“山”和他引以为豪的雍山有没有一点关联。又或许，家乡的美丽质朴和祖辈的贤德智慧早就融入了他的血液，随着他的足迹和笔划不断流淌蔓延。',
             'source_url' => 'http://tmall.utaer.com',
-        ]);
+        ];
+        $article1 = new Article($data1);
 
         $article3 = new Article([
             'title' => 'title1',
@@ -86,7 +86,11 @@ class CreateNews extends Command
             'source_url' => 'http://tmall.utaer.com',
         ]);
         $result = $app->material->uploadArticle([$article1, $article2, $article3]);
-        $article1['media_id'] = $result['media_id'];
+        $data1['show_cover_pic'] = $data1['show_cover'];
+        unset($data1['show_cover']);
+        $data1['content_source_url'] = $data1['source_url'];
+        unset($data1['source_url']);
+        $data1['media_id'] = $result['media_id'];
         WeChatMaterialImageText::create($article1);
     }
 
