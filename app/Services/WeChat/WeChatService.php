@@ -60,15 +60,15 @@ class WeChatService
                 //判断用户是否存在
                 if ($wx_user) {
                     //如果为取消关注状态，则设为关注状态
-                    if ($wx_user->subscribe == 1) $wx_user->update(['subscribe' => 0]);
+                    if ($wx_user->subscribe == 0) $wx_user->update(['subscribe' => 1]);
                 } else {
                     //获取用户基础信息
                     $user = $this->app->user->get($this->openId);
                     $user = array_filter($user);
                     $user['create_timestamp'] = time();
                     WeChatUsers::create($user);
-                    return '欢迎关注蛤蛤！';
                 }
+                return '欢迎关注蛤蛤！';
                 break;
             case 'unsubscribe':         //取关事件
                 WeChatUsers::where('openid', $this->openId)->update(['subscribe' => 0]);
