@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\WeChat;
 
+use App\Models\WeChat\WeChatMaterialImageText;
 use Illuminate\Console\Command;
 
 class News extends Command
@@ -38,6 +39,7 @@ class News extends Command
     public function handle()
     {
         $app = app('wechat.official_account');
-
+        $materialImageText = WeChatMaterialImageText::first();
+        if ($materialImageText) $app->broadcasting->sendNews($materialImageText->media_id);
     }
 }
