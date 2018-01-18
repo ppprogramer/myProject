@@ -12,7 +12,7 @@ class WeChatController extends Controller
 {
     public function serve()
     {
-        $app = app('wechat.official_account');
+//        $app = app('wechat.official_account');
 //        $app->server->push(function ($message) use ($app) {
 //            logger('ce', ['data' => $message]);
 //            switch ($message['MsgType']) {
@@ -73,7 +73,13 @@ class WeChatController extends Controller
 //                    break;
 //            }
 //        });
-        return $app->server->serve();
+//        return $app->server->serve();
+        header('Content-type:text');
+        if (isset($_GET['echostr'])) {
+            $this->valid();
+        }else{
+            $this->responseMsg();
+        }
     }
 
     public function valid()
