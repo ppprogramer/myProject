@@ -15,10 +15,10 @@ class WeChatService
 
     protected $openId;
 
-    protected function __set($name, $value)
+    public function __construct($app, $message)
     {
-        if ($name == 'app') $this->app = $value;
-        if ($name == 'message') $this->message = $value;
+        $this->app = $app;
+        $this->message = $message;
     }
 
     protected function __call($name, $arg)
@@ -115,6 +115,7 @@ class WeChatService
         if (is_null($this->app)) return '';
         $this->openId = $this->message['FromUserName'];
         $method = $this->message['MsgType'];
+        logger($method);
         return $this->$method();
     }
 }

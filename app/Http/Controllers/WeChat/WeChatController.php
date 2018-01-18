@@ -20,9 +20,7 @@ class WeChatController extends Controller
         $app = app('wechat.official_account');
         $app->server->push(function ($message) use ($app) {
             logger('ce', ['data' => $message]);
-            $weChat = new WeChatService();
-            $weChat->app = $app;
-            $weChat->message = $message;
+            $weChat = new WeChatService($app, $message);
             return $weChat->entry();
         });
         return $app->server->serve();
