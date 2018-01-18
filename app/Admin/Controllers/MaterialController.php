@@ -101,9 +101,9 @@ class MaterialController extends Controller
                 $form->create_timestamp = time();
                 $form->type = 1;
             });
-            $form->saved(function ($form) {
+            $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');
-                $material = WeChatMaterial::find($form->id);
+                $material = WeChatMaterial::find($form->model()->id);
                 $filePath = public_path("/uploads/$material->name");
                 logger('file', ['path' => $filePath]);
                 $result = $app->material->uploadImage($filePath);
