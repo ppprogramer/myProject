@@ -21,7 +21,7 @@ class WeChatService
         if ($name == 'message') $this->message = $value;
     }
 
-    protected function __call()
+    protected function __call($name, $arg)
     {
         return "欢迎关注 overtrue！";
     }
