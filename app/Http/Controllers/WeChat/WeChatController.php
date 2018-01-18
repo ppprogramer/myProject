@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WeChat;
 use App\Http\Controllers\Controller;
 use App\Models\WeChat\WeChatMaterial;
 use App\Models\WeChat\WeChatUsers;
+use EasyWeChat\Kernel\Messages\Image;
 use GuzzleHttp\Client;
 
 class WeChatController extends Controller
@@ -47,7 +48,7 @@ class WeChatController extends Controller
                 case 'text':
                     if ($message['Content'] == "图片") {
                         $material = WeChatMaterial::first();
-                        if ($material) $app->broadcasting->sendImage($material->media_id);
+                        if ($material) return new Image($material->media_id);
                     }
                     return '收到文字消息';
                     break;
