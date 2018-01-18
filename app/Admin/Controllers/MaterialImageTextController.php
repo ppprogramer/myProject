@@ -120,9 +120,9 @@ class MaterialImageTextController extends Controller
                     'thumb_media_id' => $imageText->thumb_media_id,
                     'author' => $imageText->author,
                     'digest' => $imageText->digest,
-                    'show_cover_pic' => $imageText->show_cover_pic,
+                    'show_cover' => $imageText->show_cover_pic,
                     'content' => $imageText->content,
-                    'content_source_url' => $imageText->content_source_url,
+                    'source_url' => $imageText->content_source_url,
                 ]);
                 $result = $app->material->uploadArticle($article);
                 logger('material', ['data' => $result]);
