@@ -61,7 +61,7 @@ class WeChatController extends Controller
                             new NewsItem([
                                 'title' => $title,
                                 'description' => '毕竟隔三差五就要艹，所以不能算什么新闻了',
-                                'url' => 'www.qq.com',
+                                'url' => 'tmall.utaer.com',
                                 'image' => $image,
                             ]),
                         ];
