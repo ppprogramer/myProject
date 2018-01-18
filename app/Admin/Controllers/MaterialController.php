@@ -105,8 +105,8 @@ class MaterialController extends Controller
                 $app = app('wechat.official_account');
                 $material = WeChatMaterial::find($form->model()->id);
                 $filePath = public_path("/uploads/$material->name");
-                logger('file', ['path' => $filePath]);
                 $result = $app->material->uploadImage($filePath);
+                logger('material', ['data' => $result]);
                 $media_id = $result['media_id'];
                 $url = $result['url'];
                 $material->update(['media_id' => $media_id, 'url' => $url]);
