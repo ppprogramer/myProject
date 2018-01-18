@@ -103,7 +103,7 @@ class MaterialController extends Controller
             });
             $form->saved(function ($form) {
                 $app = app('wechat.official_account');
-                $result = $app->material->uploadImage("/uploads/$form->name");
+                $result = $app->material->uploadImage(public_path("/uploads/$form->name"));
                 $media_id = $result['media_id'];
                 $url = $result['url'];
                 WeChatMaterial::find($form->id)->update(['media_id' => $media_id, 'url' => $url]);
