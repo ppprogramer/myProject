@@ -16,9 +16,9 @@ class CreateWxMaterialTable extends Migration
         Schema::create('wx_material', function (Blueprint $table) {
             $table->increments('id');
             $table->string('media_id')->nullable();
-            $table->tinyInteger('type')->comment('素材类型');
-            $table->string('name');
-            $table->string('url');
+            $table->tinyInteger('type')->comment('素材类型')->nullable();
+            $table->string('name')->nullable();
+            $table->string('url')->nullable();
             $table->integer('create_timestamp');
             $table->timestamps();
         });
