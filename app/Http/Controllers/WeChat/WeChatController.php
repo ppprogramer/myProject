@@ -21,7 +21,6 @@ class WeChatController extends Controller
         $app->server->push(function ($message) use ($app) {
             logger('ce', ['data' => $message]);
             $weChat = new WeChatService($app, $message);
-            logger('cw');
             return $weChat->entry();
         });
         return $app->server->serve();

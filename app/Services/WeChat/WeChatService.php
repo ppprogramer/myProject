@@ -111,11 +111,8 @@ class WeChatService
 
     public function entry()
     {
-        logger('cw1');
         $this->openId = $this->message['FromUserName'];
-        logger('cw1', ['message' => $this->message]);
         $method = $this->message['MsgType'];
-        logger($method);
         return $this->$method();
     }
 }
