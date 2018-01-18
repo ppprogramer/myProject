@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\test_cw;
 use App\Console\Commands\WeChat\Menu;
+use App\Console\Commands\WeChat\News;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         test_cw::class,
         Menu::class,
+        News::class,
     ];
 
     /**
