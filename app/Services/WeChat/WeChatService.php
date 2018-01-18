@@ -40,22 +40,9 @@ class WeChatService
             $items = [
                 new NewsItem([
                     'title' => $title,
-                    'description' => '抱元守一。守一是道家早期修炼方术之一，其侧重点不在炼形而是炼神，通过它排除心中杂念，保持心神清静，其主旨为守持人之精、气、神，使之不内耗，不外逸，长期...',
+                    'description' => '毕竟隔三差五就要艹，所以不能算什么新闻了',
                     'url' => 'tmall.utaer.com',
-                    'image' => "pgHx73CjDlGZxYL7eeZz5UwPSWuMtvxoN_MnnwmwIEg",
-                ]),
-                new NewsItem([
-                    'title' => "title2",
-                    'description' => '图文消息的封面图片素材id（必须是永久mediaID）
-- digest 图文消息的摘要，仅有单图文消息才有摘要，多图文此处为空',
-                    'url' => 'tmall.utaer.com',
-                    'image' => "pgHx73CjDlGZxYL7eeZz5RBB6XOh2vG31WJZNsHBfyU",
-                ]),
-                new NewsItem([
-                    'title' => 'title3',
-                    'description' => '是否显示封面，0 为 false，即不显示，1 为 true，即显示',
-                    'url' => 'tmall.utaer.com',
-                    'image' => "pgHx73CjDlGZxYL7eeZz5TrS7UopIAlq_WtO6kJuQDc",
+                    'image' => $image,
                 ]),
             ];
             $news = new News($items);
