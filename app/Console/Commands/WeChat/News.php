@@ -40,7 +40,7 @@ class News extends Command
     public function handle()
     {
         $app = app('wechat.official_account');
-        $materialImageText = WeChatMaterialImageText::first();
+        $materialImageText = WeChatMaterialImageText::orderBy('id', 'desc')->first();
         $weChatUser = WeChatUsers::where('subscribe', 1)->get();
         foreach ($weChatUser as $item) {
             if ($materialImageText)
