@@ -53,7 +53,7 @@ class WeChatController extends Controller
                     if ($message['Content'] == "图片") {
                         $material = WeChatMaterial::first();
                         if ($material) return new Image($material->media_id);
-                    } else if ($message['Content'] == "图文") {
+                    } else if ($message['Content'] == "本台消息") {
                         $title = '听说lz又要艹浦勇酱小嘴';
                         $material = WeChatMaterial::first();
                         $image = $material->url;
