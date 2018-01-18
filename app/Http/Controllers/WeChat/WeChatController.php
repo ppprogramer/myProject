@@ -8,6 +8,8 @@ use App\Models\WeChat\WeChatMaterialImageText;
 use App\Models\WeChat\WeChatUsers;
 use EasyWeChat\Kernel\Messages\Article;
 use EasyWeChat\Kernel\Messages\Image;
+use EasyWeChat\Kernel\Messages\News;
+use EasyWeChat\Kernel\Messages\NewsItem;
 use GuzzleHttp\Client;
 
 class WeChatController extends Controller
@@ -51,9 +53,20 @@ class WeChatController extends Controller
                     if ($message['Content'] == "图片") {
                         $material = WeChatMaterial::first();
                         if ($material) return new Image($material->media_id);
-                    } else if ($message['Content'] == "今日消息") {
-                        $imageText = WeChatMaterialImageText::first();
-                        if ($imageText) return new Article([$imageText->media_id]);
+                    } else if ($message['Content'] == "图文") {
+                        $title = '听说lz又要艹浦勇酱小嘴';
+                        $material = WeChatMaterial::first();
+                        $image = $material->url;
+                        $items = [
+                            new NewsItem([
+                                'title' => $title,
+                                'description' => '毕竟隔三差五就要艹，所以不能算什么新闻了',
+                                'url' => 'www.qq.com',
+                                'image' => $image,
+                            ]),
+                        ];
+                        $news = new News($items);
+                        return $news;
                     }
                     return '收到文字消息';
                     break;
