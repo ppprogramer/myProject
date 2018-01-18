@@ -91,7 +91,7 @@ class CreateNews extends Command
         $data1['content_source_url'] = $data1['source_url'];
         unset($data1['source_url']);
         $data1['media_id'] = $result['media_id'];
-        WeChatMaterialImageText::create($article1);
+        WeChatMaterialImageText::create($data1);
     }
 
 
