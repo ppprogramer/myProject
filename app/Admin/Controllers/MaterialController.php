@@ -74,7 +74,13 @@ class MaterialController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->media_id('素材ID');
-            $grid->type('素材类型');
+            $grid->name('图片')->display(function () {
+                if ($this->name) {
+                    return "<img src='/uploads/$this->name' width='260' height='185'>";
+                }
+                return '';
+            });
+//            $grid->type('素材类型');
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
         });
