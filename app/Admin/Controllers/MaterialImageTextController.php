@@ -103,6 +103,7 @@ class MaterialImageTextController extends Controller
             $form->text('title', '文章标题')->rules('required');
             $form->textarea('content', '内容')->rules('required');
             $form->select('thumb_media_id')->options(WeChatMaterial::all()->pluck('id', 'media_id'))->rules('required');
+            $form->hidden('media_id');
             $form->text('author', '作者');
             $form->text('digest', '摘要');
             $form->switch('show_cover_pic', '显示封面')->rules('required');
@@ -112,23 +113,18 @@ class MaterialImageTextController extends Controller
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
-            });
-            $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');
-                $imageText = WeChatMaterialImageText::find($form->model()->id);
                 $article = new Article([
-                    'title' => $imageText->title,
-                    'thumb_media_id' => $imageText->thumb_media_id,
-                    'author' => $imageText->author,
-                    'digest' => $imageText->digest,
-                    'show_cover' => $imageText->show_cover_pic,
-                    'content' => $imageText->content,
-                    'source_url' => $imageText->content_source_url,
+                    'title' => $form->title,
+                    'thumb_media_id' => $form->thumb_media_id,
+                    'author' => $form->author,
+                    'digest' => $form->digest,
+                    'show_cover' => $form->show_cover_pic,
+                    'content' => $form->content,
+                    'source_url' => $form->content_source_url,
                 ]);
                 $result = $app->material->uploadArticle($article);
-                logger('material', ['data' => $result]);
-                $media_id = $result['media_id'];
-                $imageText->update(['media_id' => $media_id]);
+                $form->media_id = $result['media_id'];
             });
         });
     }
