@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\test_cw;
+use App\Console\Commands\WeChat\CreateNews;
 use App\Console\Commands\WeChat\Menu;
 use App\Console\Commands\WeChat\News;
 use Illuminate\Console\Scheduling\Schedule;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
         test_cw::class,
         Menu::class,
         News::class,
+        CreateNews::class,
     ];
 
     /**
