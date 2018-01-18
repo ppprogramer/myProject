@@ -94,21 +94,18 @@ class MaterialController extends Controller
                 return md5(uniqid() . time()) . '.' . $file->guessExtension();
             });
             $form->hidden('create_timestamp', '更新时间');
-            $form->hidden('media_id', '素材ID');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
                 $form->create_timestamp = time();
+            });
+            $form->saved(function ($form) {
                 $app = app('wechat.official_account');
                 $result = $app->material->uploadImage("/uploads/$form->name");
-                $form->media_id = $result['media_id'];
-                $form->url = $result['url'];
+                $media_id = $result['media_id'];
+                $url = $result['url'];
+                WeChatMaterial::find($form->id)->update(['media_id' => $media_id, 'url' => $url]);
             });
-//            $form->saved(function ($form) {
-//                $app = app('wechat.official_account');
-//                $result = $app->material->uploadImage("/uploads/$form->path");
-//                $form->update(['']);
-//            });
         });
     }
 }
