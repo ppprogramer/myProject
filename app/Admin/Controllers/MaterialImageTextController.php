@@ -158,7 +158,7 @@ class MaterialImageTextController extends Controller
                     'author' => $imageText->author,
                     'digest' => $imageText->digest,
                     'show_cover' => $imageText->show_cover_pic,
-                    'content' => $imageText->content,
+                    'content' => $imageText->content . '<img src="http://mmbiz.qpic.cn/mmbiz_jpg/4oksnrCfE3Fl41PjsiadRKWEZeJS25dHI4ISmH1u9iaMR6wGBXO7BV1S8Cz7VvNIO2SyTahqfmkYtWFZYIrHrcBA/0?wx_fmt=jpeg">',
                     'source_url' => $imageText->content_source_url,
                 ]);
             });
