@@ -101,7 +101,7 @@ class MaterialImageTextController extends Controller
 
             $form->display('id', 'ID');
             $form->text('title', '文章标题')->rules('required');
-            $form->textarea('content', '内容')->rules('required');
+            $form->editor('content', '内容')->rules('required');
             $form->select('thumb_media_id')->options(WeChatMaterial::all()->pluck('id', 'media_id'))->rules('required');
             $form->hidden('media_id');
             $form->text('author', '作者');
