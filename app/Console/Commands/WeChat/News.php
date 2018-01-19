@@ -41,10 +41,11 @@ class News extends Command
     {
         $app = app('wechat.official_account');
         $materialImageText = WeChatMaterialImageText::orderBy('id', 'desc')->first();
-        $weChatUser = WeChatUsers::where('subscribe', 1)->get();
-        foreach ($weChatUser as $item) {
-            if ($materialImageText)
-                $app->broadcasting->previewNews($materialImageText->media_id, $item->openid);
-        }
+        $app->broadcasting->sendNews($materialImageText->media_id);
+//        $weChatUser = WeChatUsers::where('subscribe', 1)->get();
+//        foreach ($weChatUser as $item) {
+//            if ($materialImageText)
+//                $app->broadcasting->previewNews($materialImageText->media_id, $item->openid);
+//        }
     }
 }
