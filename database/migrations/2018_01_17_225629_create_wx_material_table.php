@@ -19,6 +19,7 @@ class CreateWxMaterialTable extends Migration
             $table->tinyInteger('type')->comment('素材类型')->nullable();
             $table->string('name')->nullable();
             $table->string('url')->nullable();
+            $table->tinyInteger('status')->nullable()->comment('是否上传 0-未上传 1-已上传');
             $table->integer('create_timestamp');
             $table->timestamps();
         });

@@ -98,18 +98,20 @@ class MaterialImageController extends Controller
             $form->image('name', '图片')->move('/admin/material/image')->name(function ($file) {
                 return md5(uniqid() . time()) . '.' . $file->guessExtension();
             });
-            $form->hidden('url', '图片路径');
-            $form->hidden('media_id', '素材ID');
             $form->hidden('create_timestamp', '更新时间');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
-                $app = app('wechat.official_account');
-                $filePath = public_path("/uploads/$form->name");
-                $result = $app->material->uploadImage($filePath);
-                $form->media_id = $result['media_id'];
-                $form->url = $result['media_id'];
                 $form->create_timestamp = time();
+            });
+            $form->saved(function (Form $form) {
+                $app = app('wechat.official_account');
+                $material = WeChatMaterial::find($form->model()->id);
+                $filePath = public_path("/uploads/$material->name");
+                $result = $app->material->uploadImage($filePath);
+                $media_id = $result['media_id'];
+                $url = $result['url'];
+                $material->update(['media_id' => $media_id, 'url' => $url, 'status']);
             });
         });
     }
