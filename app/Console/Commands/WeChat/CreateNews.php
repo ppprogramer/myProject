@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\WeChat;
 
-use App\Extensions\Messages\Article;
+use App\Extensions\WeChat\Messages\Article;
 use App\Models\WeChat\WeChatMaterialImageText;
 use Illuminate\Console\Command;
 
