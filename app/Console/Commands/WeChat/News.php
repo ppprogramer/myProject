@@ -41,7 +41,8 @@ class News extends Command
     {
         $app = app('wechat.official_account');
         $materialImageText = WeChatMaterialImageText::orderBy('id', 'desc')->first();
-        $app->broadcasting->sendNews($materialImageText->media_id);
+//        $app->broadcasting->sendNews($materialImageText->media_id);
+        $app->broadcasting->sendText("大家好！欢迎使用 EasyWeChat。");
 //        $weChatUser = WeChatUsers::where('subscribe', 1)->get();
 //        foreach ($weChatUser as $item) {
 //            if ($materialImageText)
