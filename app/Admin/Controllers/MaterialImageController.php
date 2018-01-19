@@ -9,6 +9,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Illuminate\Http\Response;
 
 class MaterialImageController extends Controller
 {
@@ -111,8 +112,23 @@ class MaterialImageController extends Controller
                 $result = $app->material->uploadImage($filePath);
                 $media_id = $result['media_id'];
                 $url = $result['url'];
-                $material->update(['media_id' => $media_id, 'url' => $url, 'status']);
+                $material->update(['media_id' => $media_id, 'url' => $url, 'status' => 1]);
             });
         });
+    }
+
+    public function upload($id)
+    {
+        if (!is_numeric($id)) return new Response('非法操作', '-1');
+        $material = WeChatMaterial::find($id);
+        if ($material->status == 1) return new Response('已上传，请不要重复操作', '-1');
+        $filePath = public_path("/uploads/$material->name");
+        if (!file_exists($filePath)) return new Response('文件不存在!', '-1');
+        $app = app('wechat.official_account');
+        $result = $app->material->uploadImage($filePath);
+        $media_id = $result['media_id'];
+        $url = $result['url'];
+        $material->update(['media_id' => $media_id, 'url' => $url, 'status' => 1]);
+        return new Response('上传成功', 0);
     }
 }
