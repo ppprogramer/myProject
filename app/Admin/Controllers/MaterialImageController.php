@@ -126,8 +126,9 @@ class MaterialImageController extends Controller
         });
     }
 
-    public function upload($id)
+    public function upload()
     {
+        $id = request('id');
         if (!is_numeric($id)) return new Response('非法操作', '-1');
         $material = WeChatMaterial::find($id);
         if ($material->status == 1) return new Response('已上传，请不要重复操作', '-1');
