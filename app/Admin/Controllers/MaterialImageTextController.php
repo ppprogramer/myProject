@@ -75,12 +75,12 @@ class MaterialImageTextController extends Controller
         return Admin::grid(WeChatMaterialImageText::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->media_id('素材ID');
-            $grid->thumb_media_id('图片ID');
-            $grid->title('标题');
-            $grid->content('内容');
+            $grid->media_id('素材ID')->limit(30);;
+            $grid->thumb_media_id('图片ID')->limit(30);;
+            $grid->title('标题')->limit(30);;
+            $grid->content('内容')->limit(30);;
             $grid->author('作者');
-            $grid->digest('摘要');
+            $grid->digest('摘要')->limit(30);;
             $grid->show_cover_pic('封面显示');
             $grid->content_source_url('文章原地址');
 
@@ -158,7 +158,7 @@ class MaterialImageTextController extends Controller
                     'author' => $imageText->author,
                     'digest' => $imageText->digest,
                     'show_cover' => $imageText->show_cover_pic,
-                    'content' => $imageText->content . '<img src="http://mmbiz.qpic.cn/mmbiz_jpg/4oksnrCfE3Fl41PjsiadRKWEZeJS25dHI4ISmH1u9iaMR6wGBXO7BV1S8Cz7VvNIO2SyTahqfmkYtWFZYIrHrcBA/0?wx_fmt=jpeg">',
+                    'content' => $imageText->content,
                     'source_url' => $imageText->content_source_url,
                 ]);
             });
