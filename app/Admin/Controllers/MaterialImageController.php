@@ -74,6 +74,15 @@ class MaterialImageController extends Controller
         return Admin::grid(WeChatMaterial::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->actions(function ($actions) {
+                // append一个操作
+                if ($actions->row->status == 0) {
+                    $route = route('admin.weChat.material.image.upload', ['id' => $actions->row->id]);
+                    $actions->append("<a href='$route'><button type='button' class='btn btn-success'>上传</button></a>");
+                }
+                // prepend一个操作
+//                $actions->prepend('<a href=""><i class="fa fa-paper-plane"></i></a>');
+            });
             $grid->media_id('素材ID');
             $grid->name('图片')->display(function () {
                 if ($this->name) {
