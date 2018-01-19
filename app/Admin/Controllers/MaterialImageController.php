@@ -14,8 +14,6 @@ class MaterialImageController extends Controller
 {
     use ModelForm;
 
-    protected $type = 1;            //图片素材
-
     /**
      * Index interface.
      *
@@ -82,7 +80,6 @@ class MaterialImageController extends Controller
                 }
                 return '';
             });
-//            $grid->type('素材类型');
             $grid->created_at('创建时间');
             $grid->updated_at('更新时间');
         });
@@ -101,23 +98,18 @@ class MaterialImageController extends Controller
             $form->image('name', '图片')->move('/admin/material/image')->name(function ($file) {
                 return md5(uniqid() . time()) . '.' . $file->guessExtension();
             });
+            $form->hidden('url', '图片路径');
+            $form->hidden('media_id', '素材ID');
             $form->hidden('create_timestamp', '更新时间');
-            $form->hidden('type', '类型');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
             $form->saving(function ($form) {
-                $form->create_timestamp = time();
-                $form->type = $this->type;
-            });
-            $form->saved(function (Form $form) {
                 $app = app('wechat.official_account');
-                $material = WeChatMaterial::find($form->model()->id);
-                $filePath = public_path("/uploads/$material->name");
+                $filePath = public_path("/uploads/$form->name");
                 $result = $app->material->uploadImage($filePath);
-                logger('material', ['data' => $result]);
-                $media_id = $result['media_id'];
-                $url = $result['url'];
-                $material->update(['media_id' => $media_id, 'url' => $url]);
+                $form->media_id = $result['media_id'];
+                $form->url = $result['media_id'];
+                $form->create_timestamp = time();
             });
         });
     }
