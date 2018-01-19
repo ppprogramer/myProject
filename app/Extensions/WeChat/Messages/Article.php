@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace App\Extensions\Messages;
+namespace App\Extensions\WeChat\Messages;
 
 use EasyWeChat\Kernel\Messages\Article as EasyArticle;
 
