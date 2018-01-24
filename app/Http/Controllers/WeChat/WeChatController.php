@@ -15,7 +15,7 @@ use GuzzleHttp\Client;
 
 class WeChatController extends Controller
 {
-    public function serve()
+    public function server()
     {
         $app = app('wechat.official_account');
         $app->server->push(function ($message) use ($app) {
