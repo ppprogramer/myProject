@@ -28,6 +28,7 @@ class WeChatMiniController extends Controller
         logger('result', ['data' => $result]);
         if ($result['errcode'] != 0) {
             logger('App\Http\Controllers\WeChatMini login', ['data' => $result]);
+            return ['code' => -1, 'msg' => '登陆失败！'];
         }
         $user = WeChatMiniUsers::where('openid', $result['openid'])->first();
         if (!$user) {
