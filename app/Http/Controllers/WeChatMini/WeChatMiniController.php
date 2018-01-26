@@ -26,7 +26,7 @@ class WeChatMiniController extends Controller
         }
         $result = json_decode($res->getBody(), true);
         logger('result', ['data' => $result]);
-        if ($result['errcode'] != 0) {
+        if (!empty($result['errcode'])) {
             logger('App\Http\Controllers\WeChatMini login', ['data' => $result]);
             return ['code' => -1, 'msg' => '登陆失败！'];
         }
