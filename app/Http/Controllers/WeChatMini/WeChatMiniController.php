@@ -26,7 +26,9 @@ class WeChatMiniController extends Controller
         }
         $result = json_decode($res->getBody(), true);
         logger('result', ['data' => $result]);
-        if($result[''])
+        if ($result['errcode'] != 0) {
+            logger('App\Http\Controllers\WeChatMini login', ['data' => $result]);
+        }
         $user = WeChatMiniUsers::where('openid', $result['openid'])->first();
         if (!$user) {
             WeChatMiniUsers::create([
