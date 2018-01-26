@@ -20,12 +20,13 @@ class WeChatMiniController extends Controller
         $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appId&secret=$secret&js_code=$code&grant_type=authorization_code";
         $client = new Client();
         try {
-            $result = $client->get($url);
+            $res = $client->get($url);
         } catch (\Exception $e) {
             logger('App\Http\Controllers\WeChatMini login', ['msg' => $e->getTrace()]);
         }
-        $result = (string)$result->getBody();
+        $result = json_decode($res->getBody(), true);
         logger('result', ['data' => $result]);
+        if($result[''])
         $user = WeChatMiniUsers::where('openid', $result['openid'])->first();
         if (!$user) {
             WeChatMiniUsers::create([
