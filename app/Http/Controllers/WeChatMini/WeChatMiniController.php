@@ -43,6 +43,6 @@ class WeChatMiniController extends Controller
         $encrypted = base64_encode($encrypted);
         session(['3rd_session' => $encrypted]);
         logger('token', ['data' => csrf_token()]);
-        return ['3rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
+        return ['rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
     }
 }
