@@ -11,7 +11,7 @@ class WeChatMiniController extends Controller
 {
     public function cookie()
     {
-        return ['token' => csrf_token(), 'code' => 0, 'msg' => '获取成功'];
+        return ['code' => 0, 'msg' => '获取成功'];
     }
 
     public function login()
@@ -45,11 +45,11 @@ class WeChatMiniController extends Controller
         Auth::guard('wx')->login($user);
         $data = ["openid" => $result['openid'], "session_key" => $result['session_key']];
         session(['3rd_session' => $data]);
-        return ['token' => csrf_token(), 'code' => 0, 'msg' => '登陆成功！'];
+        return ['code' => 0, 'msg' => '登陆成功！'];
     }
 
     public function banner()
     {
-        return ['token' => csrf_token(), 'code' => 0, 'msg' => '请求成功！'];
+        return ['code' => 0, 'msg' => '请求成功！'];
     }
 }
