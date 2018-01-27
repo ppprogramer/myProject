@@ -16,7 +16,7 @@ class WxMiniAuth
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check()) {
+        if (!Auth::guard('wx')->check()) {
             $code = 10110;
             $msg = '用户未认证';
             return response(compact('code', 'msg'));
