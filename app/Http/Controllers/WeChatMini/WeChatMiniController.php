@@ -50,6 +50,6 @@ class WeChatMiniController extends Controller
 
     public function banner()
     {
-        return ['token' => csrf_token(), 'code' => -1, 'msg' => '请求成功！'];
+        return ['token' => csrf_token(), 'code' => 0, 'msg' => '请求成功！'];
     }
 }
