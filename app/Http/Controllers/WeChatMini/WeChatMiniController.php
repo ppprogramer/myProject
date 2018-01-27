@@ -41,12 +41,12 @@ class WeChatMiniController extends Controller
         openssl_public_encrypt($rd_session, $encrypted, $pubKey);
         $encrypted = base64_encode($encrypted);
         session(['3rd_session' => $encrypted]);
-        logger('token', ['data' => csrf_token()]);
         return ['rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
     }
 
     public function banner()
     {
+        logger('entry', ['cw' => '既然怒']);
         $ses = session()->get('3rd_session');
         logger('3rd_session', ['data' => $ses]);
         return ['rd_session' => $ses, 'code' => -1, 'msg' => '请求成功！'];
