@@ -16,8 +16,11 @@ Route::group(['middleware' => 'web'], function () {
     //微信
     Route::any('/wechat', 'WeChat\WeChatController@server')->name('wechat.server');
     //小程序
-    Route::any('/wechatMini/auth/login', 'WeChatMini\WeChatMiniController@login')->name('wechatMini.auth.login');
-    Route::post('/wechatMini/banner', 'WeChatMini\WeChatMiniController@banner')->name('wechatMini.auth.login');
+
+    Route::get('/wechatMini/auth/cookie', 'WeChatMini\WeChatMiniController@cookie')->name('wechatMini.auth.cookie');
+    Route::get('/wechatMini/auth/token', 'WeChatMini\WeChatMiniController@token')->name('wechatMini.auth.token');
+    Route::psot('/wechatMini/auth/login', 'WeChatMini\WeChatMiniController@login')->name('wechatMini.auth.login');
+    Route::post('/wechatMini/auth/banner', 'WeChatMini\WeChatMiniController@banner')->name('wechatMini.auth.banner');
 });
 
 Route::group(['middleware' => ['web', 'wechat.mini.auth']], function () {

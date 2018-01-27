@@ -8,6 +8,16 @@ use GuzzleHttp\Client;
 
 class WeChatMiniController extends Controller
 {
+    public function cookie()
+    {
+        return ['code' => 0, 'msg' => '获取成功'];
+    }
+
+    public function token()
+    {
+        return ['token' => csrf_token(), 'code' => 0, 'msg' => '获取成功'];
+    }
+
     public function login()
     {
         $rules = [
