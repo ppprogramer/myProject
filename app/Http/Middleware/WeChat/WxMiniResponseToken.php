@@ -16,8 +16,12 @@ class WxMiniResponseToken
     public function handle($request, Closure $next)
     {
         $content = $response = $next($request);
-        !isset($content['token']) && $content['token'] = csrf_token();
-        $response = $response->setContent($content);
+        if (strstr(request()->route()->getPrefix(), 'wechatMini')) {
+            logger('array', ['data' => $content]);
+            if (!is_array($content)) $content->toArray();
+            !isset($content['token']) && $content['token'] = csrf_token();
+            $response = $response->setContent($content);
+        }
         return $response;
     }
 }
