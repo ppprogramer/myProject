@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'wx' => [
+            'driver' => 'session',
+            'provider' => 'wx_mini_users',
+        ],
     ],
 
     /*
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'wx_mini_users' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\WeChat\WeChatMiniUsers::class,
         ],
 
         // 'users' => [

@@ -5,15 +5,11 @@ namespace App\Http\Controllers\WeChatMini;
 use App\Http\Controllers\Controller;
 use App\Models\WeChat\WeChatMiniUsers;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class WeChatMiniController extends Controller
 {
     public function cookie()
-    {
-        return ['code' => 0, 'msg' => '获取成功'];
-    }
-
-    public function token()
     {
         return ['token' => csrf_token(), 'code' => 0, 'msg' => '获取成功'];
     }
@@ -41,17 +37,15 @@ class WeChatMiniController extends Controller
         }
         $user = WeChatMiniUsers::where('openid', $result['openid'])->first();
         if (!$user) {
-            WeChatMiniUsers::create([
+            $user = WeChatMiniUsers::create([
                 'openid' => $result['openid'],
                 'create_timestamp' => time()
             ]);
         }
-        $rd_session = $result['openid'] . "," . $result['session_key'];
-        $pubKey = file_get_contents(storage_path('rsa/pub_key'));
-        openssl_public_encrypt($rd_session, $encrypted, $pubKey);
-        $encrypted = base64_encode($encrypted);
-        session(['3rd_session' => $encrypted]);
-        return ['rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
+        Auth::guard('wx')->login($user);
+        $data = ["openid" => $result['openid'], "session_key" => $result['session_key']];
+        session(['3rd_session' => $data]);
+        return ['token' => csrf_token(), 'code' => 0, 'msg' => '登陆成功！'];
     }
 
     public function banner()
@@ -59,6 +53,6 @@ class WeChatMiniController extends Controller
         logger('entry', ['cw' => '既然怒']);
         $ses = session()->get('3rd_session');
         logger('3rd_session', ['data' => $ses]);
-        return ['rd_session' => $ses, 'code' => -1, 'msg' => '请求成功！'];
+        return ['token' => csrf_token(), 'code' => -1, 'msg' => '请求成功！'];
     }
 }

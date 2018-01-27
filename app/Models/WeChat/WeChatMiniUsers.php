@@ -2,9 +2,9 @@
 
 namespace App\Models\WeChat;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class WeChatMiniUsers extends Model
+class WeChatMiniUsers extends Authenticatable
 {
     protected $table = 'wx_mini_users';
 
