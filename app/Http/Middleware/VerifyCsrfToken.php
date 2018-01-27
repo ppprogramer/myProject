@@ -13,6 +13,5 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'wechat',
-        'wechatMini/auth/login',
     ];
 }
