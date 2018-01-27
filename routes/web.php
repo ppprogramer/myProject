@@ -21,8 +21,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/wechatMini/auth/token', 'WeChatMini\WeChatMiniController@token')->name('wechatMini.auth.token');
     Route::post('/wechatMini/auth/login', 'WeChatMini\WeChatMiniController@login')->name('wechatMini.auth.login');
 
+    Route::post('/wechatMini/auth/banner', 'WeChatMini\WeChatMiniController@banner')->name('wechatMini.auth.banner');
     Route::group(['middleware' => 'wx.mini.auth'], function () {
-        Route::post('/wechatMini/auth/banner', 'WeChatMini\WeChatMiniController@banner')->name('wechatMini.auth.banner');
     });
 });
 

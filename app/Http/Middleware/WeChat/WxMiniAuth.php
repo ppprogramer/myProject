@@ -17,7 +17,6 @@ class WxMiniAuth
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            logger('cw');
             return ['token' => csrf_token(), 'code' => -1, 'msg' => '用户未认证'];
         }
         return $next($request);
