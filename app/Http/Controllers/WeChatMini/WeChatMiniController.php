@@ -50,9 +50,6 @@ class WeChatMiniController extends Controller
 
     public function banner()
     {
-        logger('entry', ['cw' => '既然怒']);
-        $ses = session()->get('3rd_session');
-        logger('3rd_session', ['data' => $ses]);
         return ['token' => csrf_token(), 'code' => -1, 'msg' => '请求成功！'];
     }
 }
