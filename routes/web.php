@@ -18,7 +18,6 @@ Route::group(['middleware' => 'web'], function () {
     //小程序
     Route::group(['prefix' => 'wechatMini'], function () {
         Route::get('/auth/cookie', 'WeChatMini\WeChatMiniController@cookie')->name('wechatMini.auth.cookie');
-        Route::get('/auth/token', 'WeChatMini\WeChatMiniController@token')->name('wechatMini.auth.token');
         Route::post('/auth/login', 'WeChatMini\WeChatMiniController@login')->name('wechatMini.auth.login');
 
         Route::group(['middleware' => 'wx.mini.auth'], function () {

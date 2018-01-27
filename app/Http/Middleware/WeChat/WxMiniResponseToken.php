@@ -3,6 +3,7 @@
 namespace App\Http\Middleware\WeChat;
 
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class WxMiniResponseToken
@@ -18,16 +19,14 @@ class WxMiniResponseToken
     {
         $content = $response = $next($request);
         if (strstr(request()->route()->getPrefix(), 'wechatMini')) {
-            if ($response instanceof Response) {
+            if ($response instanceof Response || $response instanceof JsonResponse) {
                 $content = $response->original;
             }
             if (is_null($content)) {
                 $content = [];
             }
-            logger('array', ['data' => $content]);
-            if (!is_array($content)) $content->toArray();
             !isset($content['token']) && $content['token'] = csrf_token();
-            $response = $response->setContent($content);
+            $response = $response->setData($content);
         }
         return $response;
     }
