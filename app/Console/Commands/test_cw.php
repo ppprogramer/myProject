@@ -45,7 +45,22 @@ class test_cw extends Command
      */
     public function handle()
     {
-        //
+        $pubKey = file_get_contents(storage_path('rsa/pub_key'));
+        openssl_public_encrypt('234', $encrypted, $pubKey);
+        echo base64_encode($encrypted);
+    }
+
+    public function rsa()
+    {
+        $config = array(
+            "private_key_bits" => 2048,                     //字节数    512 1024  2048   4096 等
+            "private_key_type" => OPENSSL_KEYTYPE_RSA,     //加密类型
+        );
+        $res = openssl_pkey_new($config);
+        openssl_pkey_export($res, $priKey);
+        $pubKey = openssl_pkey_get_details($res);
+        $pubKey = $pubKey["key"];
+        return ['cert' => $pubKey, 'pri_key' => $priKey];
     }
 
     public function item()

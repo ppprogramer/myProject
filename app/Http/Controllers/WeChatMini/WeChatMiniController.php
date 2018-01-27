@@ -38,7 +38,11 @@ class WeChatMiniController extends Controller
             ]);
         }
         $rd_session = $result['openid'] . "," . $result['session_key'];
-        session(['3rd_session' => $rd_session]);
-        return ['3rd_session' => $rd_session, 'code' => 0, 'msg' => '登陆成功！'];
+        $pubKey = file_get_contents(storage_path('rsa/pub_key'));
+        openssl_public_encrypt($rd_session, $encrypted, $pubKey);
+        $encrypted = base64_encode($encrypted);
+        session(['3rd_session' => $encrypted]);
+        logger('token', ['data' => csrf_token()]);
+        return ['3rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
     }
 }
