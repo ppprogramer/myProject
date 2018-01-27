@@ -25,7 +25,6 @@ class WeChatMiniController extends Controller
             logger('App\Http\Controllers\WeChatMini login', ['msg' => $e->getTrace()]);
         }
         $result = json_decode($res->getBody(), true);
-        logger('result', ['data' => $result]);
         if (!empty($result['errcode'])) {
             logger('App\Http\Controllers\WeChatMini login', ['data' => $result]);
             return ['code' => -1, 'msg' => '登陆失败！'];
@@ -49,6 +48,7 @@ class WeChatMiniController extends Controller
     public function banner()
     {
         $ses = session()->get('3rd_session');
+        logger('3rd_session', ['data' => $ses]);
         return ['rd_session' => $ses, 'code' => -1, 'msg' => '请求成功！'];
     }
 }
