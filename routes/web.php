@@ -17,9 +17,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::any('/wechat', 'WeChat\WeChatController@server')->name('wechat.server');
     //小程序
     Route::any('/wechatMini/auth/login', 'WeChatMini\WeChatMiniController@login')->name('wechatMini.auth.login');
+    Route::post('/wechatMini/banner', 'WeChatMini\WeChatMiniController@banner')->name('wechatMini.auth.login');
 });
 
-Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+Route::group(['middleware' => ['web', 'wechat.mini.auth']], function () {
 
 
 });

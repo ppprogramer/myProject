@@ -45,4 +45,10 @@ class WeChatMiniController extends Controller
         logger('token', ['data' => csrf_token()]);
         return ['rd_session' => $encrypted, 'code' => 0, 'msg' => '登陆成功！'];
     }
+
+    public function banner()
+    {
+        $ses = session()->get('3rd_session');
+        return ['rd_session' => $ses, 'code' => -1, 'msg' => '请求成功！'];
+    }
 }
