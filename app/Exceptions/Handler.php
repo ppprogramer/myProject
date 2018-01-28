@@ -46,6 +46,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if (!$exception instanceof ValidationException) {
+            logger('valid', ['data' => $request->route()]);
             if ($request->route()->getPrefix() == 'wechatMini') {
                 $code = -2;
                 $msg = '服务器错误！';
