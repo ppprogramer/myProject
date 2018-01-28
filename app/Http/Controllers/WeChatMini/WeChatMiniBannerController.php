@@ -9,7 +9,7 @@ class WeChatMiniBannerController extends Controller
 {
     public function bannerList()
     {
-        $list = RollPicture::select(['name'])->orderBy('id', 'desc')->limit(5)->get();
+        $list = RollPicture::select(['name', 'id'])->orderBy('id', 'desc')->limit(5)->get();
         foreach ($list as $item) {
             $item->name = "/uploads/$item->name";
         }
