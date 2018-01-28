@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-10-24.
+    * Generated on 2018-01-28.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -39,6 +39,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -168,6 +171,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -297,6 +303,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -426,6 +435,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -555,6 +567,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -684,6 +699,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,
@@ -813,6 +831,9 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
+        'wechat.official_account.default' => \EasyWeChat\OfficialAccount\Application::class,
+        'wechat.mini_program.default' => \EasyWeChat\MiniProgram\Application::class,
+        'weChatMiniService' => \App\Services\WeChat\WeChatMIniService::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Illuminate\Console\Scheduling\Schedule' => \Illuminate\Console\Scheduling\Schedule::class,
         'cache' => \Illuminate\Cache\CacheManager::class,

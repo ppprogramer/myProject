@@ -20,17 +20,12 @@ class WeChatMiniController extends Controller
             'code' => 'required'
         ];
         $this->validate(request(), $rules);
-        $code = request('code');
-        $appId = env('WECHAT_MINI_PROGRAM_APPID');
-        $secret = env('WECHAT_MINI_PROGRAM_SECRET');
-        $url = "https://api.weixin.qq.com/sns/jscode2session?appid=$appId&secret=$secret&js_code=$code&grant_type=authorization_code";
-        $client = new Client();
         try {
-            $res = $client->get($url);
+            $result = app('weChatMiniService')->getOpenId(request('code'));
         } catch (\Exception $e) {
-            logger('App\Http\Controllers\WeChatMini login', ['msg' => $e->getTrace()]);
+            logger('App\Http\Controllers\WeChatMini login', ['msg' => $e->getMessage()]);
+            return ['code' => -1, 'msg' => '登陆失败，请稍后再试！'];
         }
-        $result = json_decode($res->getBody(), true);
         if (!empty($result['errcode'])) {
             logger('App\Http\Controllers\WeChatMini login', ['data' => $result]);
             return ['code' => -1, 'msg' => '登陆失败！'];
