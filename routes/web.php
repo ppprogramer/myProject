@@ -19,9 +19,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['namespace' => 'WeChatMini', 'prefix' => 'wechatMini'], function () {
         Route::get('/auth/cookie', 'WeChatMiniAuthController@cookie')->name('wechatMini.auth.cookie');
         Route::post('/auth/login', 'WeChatMiniAuthController@login')->name('wechatMini.auth.login');
-
+        Route::get('/banner/list', 'WeChatMiniBannerController@bannerList')->name('wechatMini.banner.list');
         Route::group(['middleware' => 'wx.mini.auth'], function () {
-            Route::post('/banner/list', 'WeChatMiniBannerController@bannerList')->name('wechatMini.banner.list');
+//            Route::get('/banner/list', 'WeChatMiniBannerController@bannerList')->name('wechatMini.banner.list');
         });
     });
 
