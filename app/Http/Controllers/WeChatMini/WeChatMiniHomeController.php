@@ -21,7 +21,7 @@ class WeChatMiniHomeController extends Controller
     public function categories()
     {
         $cateId = 4;            //服饰鞋包
-        $list = Item::where('pid', $cateId)->get();
+        $list = Item::select(['id', 'name'])->where('pid', $cateId)->get();
         return ['list' => $list, 'code' => 0, 'msg' => '获取成功'];
     }
 }
