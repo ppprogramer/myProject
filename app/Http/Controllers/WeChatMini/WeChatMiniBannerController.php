@@ -14,6 +14,6 @@ class WeChatMiniBannerController extends Controller
         foreach ($list as $item) {
             $item->name = $domain . "/uploads/$item->name";
         }
-        return ['list' => $list->toArray(), 'code' => 0, 'msg' => '获取成功'];
+        return ['list' => $list, 'code' => 0, 'msg' => '获取成功'];
     }
 }
