@@ -24,7 +24,11 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('/home/categories', 'WeChatMiniHomeController@categories')->name('wechatMini.home.categories');
         });
     });
+});
 
+
+Route::group(['middleware' => ['web','cors']], function ($router) {
+    $router->any('/test/login', 'Vue\TestController@index');
 });
 
 
