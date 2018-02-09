@@ -27,9 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 
-Route::group(['middleware' => ['web','cors']], function ($router) {
-    $router->any('/test/login', 'Vue\TestController@index');
-});
+
 
 
 

@@ -3,13 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Models\Item;
-use App\Models\WeChat\WeChatUsers;
+use App\Models\User;
+use App\Notifications\InvoicePaid;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Cache\Simple\FilesystemCache;
-use Workerman\Worker;
+use Illuminate\Support\Facades\Mail;
 
 class test_cw extends Command
 {
@@ -45,9 +44,14 @@ class test_cw extends Command
      */
     public function handle()
     {
-        $pubKey = file_get_contents(storage_path('rsa/pub_key'));
-        openssl_public_encrypt('234', $encrypted, $pubKey);
-        echo base64_encode($encrypted);
+        $user = User::first();
+        $email = $user->email;
+        $user->notify(new InvoicePaid());
+//        Mail::send('mail', ['user' => $user], function ($message) use ($email) {
+//            $message->from('serenity_tang@163.com', 'Laravel');
+//
+//            $message->to($email);
+//        });
     }
 
     public function rsa()
