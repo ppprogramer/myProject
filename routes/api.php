@@ -16,8 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware' => 'api'], function ($router) {
+    $router->post('/test/login', 'Vue\TestController@index');
+//    $router->pattern('path', '.+');
+//    $router->options('{path}', 'Vue\TestController@index');
+});
+
 Route::group(['middleware' => ['api', 'cors']], function ($router) {
     $router->pattern('path', '.+');
-    $router->post('/test/login', 'Vue\TestController@index');
     $router->options('{path}', 'Vue\TestController@index');
 });

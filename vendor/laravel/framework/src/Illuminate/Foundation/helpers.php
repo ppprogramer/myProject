@@ -149,9 +149,9 @@ if (! function_exists('auth')) {
     {
         if (is_null($guard)) {
             return app(AuthFactory::class);
-        } else {
-            return app(AuthFactory::class)->guard($guard);
         }
+
+        return app(AuthFactory::class)->guard($guard);
     }
 }
 
@@ -292,14 +292,16 @@ if (! function_exists('cookie')) {
      *
      * @param  string  $name
      * @param  string  $value
-     * @param  int     $minutes
+     * @param  int  $minutes
      * @param  string  $path
      * @param  string  $domain
-     * @param  bool    $secure
-     * @param  bool    $httpOnly
+     * @param  bool  $secure
+     * @param  bool  $httpOnly
+     * @param  bool  $raw
+     * @param  string|null  $sameSite
      * @return \Illuminate\Cookie\CookieJar|\Symfony\Component\HttpFoundation\Cookie
      */
-    function cookie($name = null, $value = null, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
+    function cookie($name = null, $value = null, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = true, $raw = false, $sameSite = null)
     {
         $cookie = app(CookieFactory::class);
 
@@ -307,7 +309,7 @@ if (! function_exists('cookie')) {
             return $cookie;
         }
 
-        return $cookie->make($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
+        return $cookie->make($name, $value, $minutes, $path, $domain, $secure, $httpOnly, $raw, $sameSite);
     }
 }
 
@@ -481,9 +483,9 @@ if (! function_exists('factory')) {
             return $factory->of($arguments[0], $arguments[1])->times($arguments[2] ?? null);
         } elseif (isset($arguments[1])) {
             return $factory->of($arguments[0])->times($arguments[1]);
-        } else {
-            return $factory->of($arguments[0]);
         }
+
+        return $factory->of($arguments[0]);
     }
 }
 
@@ -555,6 +557,12 @@ if (! function_exists('mix')) {
         }
 
         if (file_exists(public_path($manifestDirectory.'/hot'))) {
+            $url = file_get_contents(public_path($manifestDirectory.'/hot'));
+
+            if (Str::startsWith($url, ['http://', 'https://'])) {
+                return new HtmlString(Str::after($url, ':').$path);
+            }
+
             return new HtmlString("//localhost:8080{$path}");
         }
 
@@ -900,7 +908,7 @@ if (! function_exists('__')) {
      * @param  string  $key
      * @param  array  $replace
      * @param  string  $locale
-     * @return string
+     * @return string|array|null
      */
     function __($key, $replace = [], $locale = null)
     {
