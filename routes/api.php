@@ -16,12 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['middleware' => 'api'], function ($router) {
-    $router->post('/test/login', 'Vue\TestController@index');
-//    $router->pattern('path', '.+');
-//    $router->options('{path}', 'Vue\TestController@index');
+Route::group(['namespace' => 'Api', 'middleware' => 'api'], function ($router) {
+    $router->post('/user/login', 'ApiAuthController@login');
 });
 
+Route::group(['namespace' => 'Api', 'middleware' => ['api', 'api.auth']], function ($router) {
+    $router->resource('user', 'ApiUserController', ['as' => 'api']);
+});
+
+//所有跨域的试探请求路由
 Route::group(['middleware' => ['api', 'cors']], function ($router) {
     $router->pattern('path', '.+');
     $router->options('{path}', 'Vue\TestController@index');

@@ -1,36 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'E:\\program\\node\\node.exe',
-1 verbose cli   'E:\\program\\node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli [ 'D:\\Program Files\\node\\node.exe',
+1 verbose cli   'D:\\Program Files\\node\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'run',
-1 verbose cli   'server' ]
-2 info using npm@3.10.10
-3 info using node@v6.10.2
-4 verbose run-script [ 'preserver', 'server', 'postserver' ]
-5 info lifecycle myProject@1.0.0~preserver: myProject@1.0.0
-6 silly lifecycle myProject@1.0.0~preserver: no script for preserver, continuing
-7 info lifecycle myProject@1.0.0~server: myProject@1.0.0
-8 verbose lifecycle myProject@1.0.0~server: unsafe-perm in lifecycle true
-9 verbose lifecycle myProject@1.0.0~server: PATH: E:\program\node\node_modules\npm\bin\node-gyp-bin;F:\phpStudy\WWW\myProject\node_modules\.bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;E:\program\Git\cmd;F:\phpStudy\php\php-7.0.12-nts;C:\ProgramData\ComposerSetup\bin;E:\program\python;E:\program\Lua\5.1;E:\program\Lua\5.1\clibs;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;E:\program\node;E:\program\python\Scripts\;E:\program\python\;F:\cocos\cocos2d-x-3.15.1\cocos2d-x-3.15.1\templates;F:\cocos\cocos2d-x-3.15.1\cocos2d-x-3.15.1\tools\cocos2d-console\bin;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\Composer\vendor\bin;E:\program\bindzip\
-10 verbose lifecycle myProject@1.0.0~server: CWD: F:\phpStudy\WWW\myProject
-11 silly lifecycle myProject@1.0.0~server: Args: [ '/d /s /c', 'webpack-dev-server --open' ]
-12 verbose stack Error: kill ENOSYS
-12 verbose stack     at exports._errnoException (util.js:1018:11)
-12 verbose stack     at process.kill (internal/process.js:190:13)
-12 verbose stack     at process.listener (E:\program\node\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
-12 verbose stack     at emitNone (events.js:91:20)
-12 verbose stack     at process.emit (events.js:185:7)
-12 verbose stack     at processEmit (E:\program\node\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
-12 verbose stack     at processEmit (E:\program\node\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
-12 verbose stack     at Signal.wrap.onsignal (internal/process.js:217:44)
-13 verbose cwd F:\phpStudy\WWW\myProject
-14 error Windows_NT 10.0.14393
-15 error argv "E:\\program\\node\\node.exe" "E:\\program\\node\\node_modules\\npm\\bin\\npm-cli.js" "run" "server"
-16 error node v6.10.2
-17 error npm  v3.10.10
-18 error code ENOSYS
-19 error errno ENOSYS
-20 error syscall kill
-21 error kill ENOSYS
-22 error If you need help, you may report this error at:
-22 error     <https://github.com/npm/npm/issues>
-23 verbose exit [ 1, true ]
+1 verbose cli   'dev' ]
+2 info using npm@3.8.9
+3 info using node@v6.2.0
+4 verbose stack Error: missing script: dev
+4 verbose stack     at run (D:\Program Files\node\node_modules\npm\lib\run-script.js:150:19)
+4 verbose stack     at D:\Program Files\node\node_modules\npm\lib\run-script.js:60:5
+4 verbose stack     at D:\Program Files\node\node_modules\npm\node_modules\read-package-json\read-json.js:356:5
+4 verbose stack     at checkBinReferences_ (D:\Program Files\node\node_modules\npm\node_modules\read-package-json\read-json.js:320:45)
+4 verbose stack     at final (D:\Program Files\node\node_modules\npm\node_modules\read-package-json\read-json.js:354:3)
+4 verbose stack     at then (D:\Program Files\node\node_modules\npm\node_modules\read-package-json\read-json.js:124:5)
+4 verbose stack     at D:\Program Files\node\node_modules\npm\node_modules\read-package-json\read-json.js:311:12
+4 verbose stack     at D:\Program Files\node\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:78:16
+4 verbose stack     at tryToString (fs.js:449:3)
+4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:436:12)
+5 verbose cwd D:\Project\myProject
+6 error Windows_NT 10.0.14393
+7 error argv "D:\\Program Files\\node\\node.exe" "D:\\Program Files\\node\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
+8 error node v6.2.0
+9 error npm  v3.8.9
+10 error missing script: dev
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]

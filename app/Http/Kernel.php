@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthenticateApi;
 use App\Http\Middleware\WeChat\WxMiniAuth;
 use App\Http\Middleware\WeChat\WxMiniResponseToken;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cors' => \App\Http\Middleware\Cors::class,
+        'api.auth' => AuthenticateApi::class,
     ];
 }
