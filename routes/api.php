@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Api', 'middleware' => 'api'], function ($router) {
     $router->post('/user/login', 'ApiAuthController@login');
+    $router->get('/test', 'ApiUserController@test');
 });
 
 Route::group(['namespace' => 'Api', 'middleware' => ['api', 'api.auth']], function ($router) {
@@ -25,7 +26,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['api', 'api.auth']], functi
 });
 
 //所有跨域的试探请求路由
-Route::group(['middleware' => ['api', 'cors']], function ($router) {
-    $router->pattern('path', '.+');
-    $router->options('{path}', 'Vue\TestController@index');
-});
+//Route::group(['middleware' => ['api', 'cors']], function ($router) {
+//    $router->pattern('path', '.+');
+//    $router->options('{path}', 'Vue\TestController@index');
+//});

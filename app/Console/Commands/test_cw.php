@@ -44,14 +44,14 @@ class test_cw extends Command
      */
     public function handle()
     {
-        $user = User::first();
-        $email = $user->email;
-        $user->notify(new InvoicePaid());
-//        Mail::send('mail', ['user' => $user], function ($message) use ($email) {
-//            $message->from('serenity_tang@163.com', 'Laravel');
-//
-//            $message->to($email);
-//        });
+        $config = config('passport.default');
+        $query = http_build_query([
+            'client_id' => $config['client_id'],
+            'redirect_uri' => 'http://www.project.cc/callback',
+            'response_type' => 'code',
+//            'scope' => '',
+        ]);
+        return redirect('http://your-app.com/oauth/authorize?' . $query);
     }
 
     public function rsa()
