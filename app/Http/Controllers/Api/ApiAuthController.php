@@ -23,12 +23,12 @@ class ApiAuthController extends Controller
         $config = config('passport.default');
         $request->request->add(
             [
-                'grant_type'    =>      $config['grant_type'],
-                'client_id'     =>      $config['client_id'],
-                'client_secret' =>      $config['client_secret'],
-                'username'      =>      $credentials[$this->username()],
-                'password'      =>      $credentials['password'],
-                'scope'         =>      $config['scope'],
+                'grant_type' => $config['grant_type'],
+                'client_id' => $config['client_id'],
+                'client_secret' => $config['client_secret'],
+                'username' => $credentials[$this->username()],
+                'password' => $credentials['password'],
+                'scope' => $config['scope'],
             ]
         );
         $proxy = Request::create('oauth/token', 'POST');
@@ -65,16 +65,20 @@ class ApiAuthController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            $this->username() => 'required',
+            'username' => 'required',
             'password' => 'required',
         ];
         $this->validate($request, $rules);
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $data = [$this->username() => $username, 'password' => $password];
+        $request->request->replace($data);
         $credentials = $this->credentials($request);
 
         if ($this->guard('api')->attempt($credentials, $request->has('remember'))) {
             return $this->sendLoginResponse($request);
         }
-        return ['code' => -1, 'msg' => '失败'];
+        return ['code' => -1, 'msg' => '登录失败'];
     }
 }
 

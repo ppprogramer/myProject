@@ -13,19 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 Route::group(['namespace' => 'Api', 'middleware' => 'api'], function ($router) {
-    $router->post('/user/login', 'ApiAuthController@login');
+    $router->pattern('path', '.+');
+    //所有跨域的试探请求路由
+    $router->options('{path}', function () {})->name('api,options')->middleware('cors');
+    //
+    $router->post('/auth/login', 'ApiAuthController@login');
     $router->get('/test', 'ApiUserController@test');
-});
 
-Route::group(['namespace' => 'Api', 'middleware' => ['api', 'api.auth']], function ($router) {
-    $router->resource('user', 'ApiUserController', ['as' => 'api']);
+    $router->group(['middleware' => 'api.auth'], function ($router) {
+        //用户
+        $router->resource('user', 'ApiUserController', ['as' => 'api']);
+    });
 });
-
-//所有跨域的试探请求路由
+//
+//Route::group(['namespace' => 'Api', 'middleware' => ['api', 'api.auth']], function ($router) {
+//    $router->resource('user', 'ApiUserController', ['as' => 'api']);
+//});
+//
+//
 //Route::group(['middleware' => ['api', 'cors']], function ($router) {
 //    $router->pattern('path', '.+');
 //    $router->options('{path}', 'Vue\TestController@index');

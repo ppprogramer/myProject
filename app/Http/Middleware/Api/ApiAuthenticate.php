@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Api;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticateApi
+class ApiAuthenticate
 {
     /**
      * Handle an incoming request.
