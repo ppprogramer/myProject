@@ -32,6 +32,8 @@ class ApiAuthController extends ApiBaseController
         );
         $proxy = Request::create('oauth/token', 'POST');
         $response = Route::dispatch($proxy);
+        $content = \GuzzleHttp\json_decode($response->getContent(), true);
+        $response->setContent(array_merge($content, ['code' => 0, 'msg' => '登录成功']));
         return $response;
     }
 
