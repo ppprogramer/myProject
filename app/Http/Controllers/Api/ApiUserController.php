@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ApiUserController extends Controller
+class ApiUserController extends ApiBaseController
 {
-    public function index()
+    public function info()
     {
         $user = Auth::guard('api')->user();
-        return ['data' => $user, 'code' => 0, 'msg' => '获取成功'];
+        $output = ['data' => $user, 'code' => 0, 'msg' => '获取成功'];
+        return $this->output($output);
     }
 
     public function test()

@@ -3,9 +3,8 @@
 namespace App\Http\Middleware\Api;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class ApiAuthenticate
+class ApiResponseHeader
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,8 @@ class ApiAuthenticate
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guard('api')->check()) {
-            $code = 10010;
-            $msg = "未认证";
-            return response(compact('code', 'msg'));
-        }
-        return $next($request);
+        $response = $next($request);
+        $response->header('Access-Control-Allow-Origin', "*");
+        return $response;
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class ApiAuthController extends Controller
+class ApiAuthController extends ApiBaseController
 {
     use  AuthenticatesUsers;
 
@@ -78,7 +77,7 @@ class ApiAuthController extends Controller
         if ($this->guard('api')->attempt($credentials, $request->has('remember'))) {
             return $this->sendLoginResponse($request);
         }
-        return ['code' => -1, 'msg' => '登录失败'];
+        return $this->output(['code' => -1, 'msg' => '登录失败']);
     }
 }
 
