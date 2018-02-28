@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'api'], function ($router) {
     $router->group(['middleware' => 'api.auth'], function ($router) {
         //用户
         $router->get('/user/info', 'ApiUserController@info');
+        $router->get('/transaction/list', 'ApiUserController@info');
     });
 });
 //

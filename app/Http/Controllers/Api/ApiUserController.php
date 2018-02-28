@@ -9,7 +9,7 @@ class ApiUserController extends ApiBaseController
     public function info()
     {
         $user = Auth::guard('api')->user();
-        $output = ['data' => $user, 'code' => 0, 'msg' => '获取成功'];
+        $output = ['roles' => ['admin'], 'name' => $user->email, 'code' => 0, 'msg' => '获取成功'];
         return $this->output($output);
     }
 
