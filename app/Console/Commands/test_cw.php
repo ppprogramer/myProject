@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Item;
+use App\Models\Order;
 use App\Models\User;
 use App\Notifications\InvoicePaid;
 use GuzzleHttp\Client;
@@ -44,14 +45,7 @@ class test_cw extends Command
      */
     public function handle()
     {
-        $config = config('passport.default');
-        $query = http_build_query([
-            'client_id' => $config['client_id'],
-            'redirect_uri' => 'http://www.project.cc/callback',
-            'response_type' => 'code',
-//            'scope' => '',
-        ]);
-        return redirect('http://your-app.com/oauth/authorize?' . $query);
+        factory(Order::class, 10)->create();
     }
 
     public function rsa()
