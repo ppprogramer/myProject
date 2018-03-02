@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'wechat',
-        'test/login,'
+        'test/login',
+        'oauth/token/refresh',
     ];
 }

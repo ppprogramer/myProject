@@ -24,13 +24,7 @@ Route::group(['middleware' => 'web'], function ($router) {
             $router->post('/home/categories', 'WeChatMiniHomeController@categories')->name('wechatMini.home.categories');
         });
     });
-    $router->get('/auth/callback', function (\Illuminate\Http\Request $request) {
-        if ($request->get('code')) {
-            return 'Login Success';
-        } else {
-            return 'Access Denied';
-        }
-    });
+    $router->post('/auth/refreshToken', 'TransientTokenController@refresh');
 });
 
 

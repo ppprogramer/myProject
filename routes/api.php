@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'api'], function ($router) {
     $router->options('{path}', function () {})->name('api,options')->middleware('cors');
     //
     $router->post('/auth/login', 'ApiAuthController@login');
+    $router->post('/auth/refreshToken', 'ApiAuthController@refreshToken');
     $router->get('/test', 'ApiUserController@test');
 
     $router->group(['middleware' => 'api.auth'], function ($router) {

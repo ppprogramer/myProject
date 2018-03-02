@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use GuzzleHttp\Client;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,30 @@ class ApiAuthController extends ApiBaseController
             return $this->sendLoginResponse($request);
         }
         return $this->output(['code' => -1, 'msg' => '登录失败']);
+    }
+
+    public function refreshToken(Request $request)
+    {
+        $rules = [
+            'refresh_token' => 'required',
+        ];
+        $this->validate(request(), $rules);
+        $refreshToken = request('refresh_token');
+        $config = config('passport.default');
+        $request->request->add(
+            [
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refreshToken,
+                'client_id' => $config['client_id'],
+                'client_secret' => $config['client_secret'],
+                'scope' => $config['scope'],
+            ]
+        );
+        $proxy = Request::create('oauth/token/refresh', 'POST');
+        $response = Route::dispatch($proxy);
+        $content = \GuzzleHttp\json_decode($response->getContent(), true);
+        $response->setContent(array_merge($content, ['code' => 0, 'msg' => '登录成功']));
+        return $response;
     }
 }
 
